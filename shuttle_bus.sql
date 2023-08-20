@@ -84,6 +84,7 @@ CREATE TABLE BusTrips (
 
 CREATE TABLE PassengerTracking (
 	passengerId varchar(50) NOT NULL,
+	passengerType varchar(50) NOT NULL,
 	stopLocation varchar(50) NOT NULL,
 	onTime varchar(50) NULL,
 	offTime varchar(50) NULL,
@@ -100,7 +101,17 @@ CREATE TABLE PassengerMetrics (
 	PRIMARY KEY (passengerCount, busNumber)
 )
 
+CREATE TABLE metricsLogin (
+	userId varchar(50) NOT NULL AUTO_INCREMENT,
+	username varchar(50) NOT NULL,
+	email varchar(50) NOT NULL,
+	password varchar(50) NOT NULL,
+	PRIMARY KEY (userId, username)
+)
 
+INSERT INTO metricsLogin VALUES
+('1','user1','user1@usq.edu.au','test1'),
+('2','user2','user2@usq.edu.au','test1');
 
 -- Create a db user
 GRANT SELECT, INSERT, UPDATE, DELETE
