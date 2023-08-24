@@ -80,16 +80,21 @@ CREATE TABLE BusTrips (
 	PRIMARY KEY (passengerNumber)
 );
 
+INSERT INTO BusTrips VALUES -- fake data
+(1, 'u11111', 'Student', 'B1', '01/01/2020', 'Toowoomba' 'Springfield'),
+(2, 'u22222', 'Staff', 'B2', '02/02/2020', 'Toowoomba' 'Springfield'),
+(3, 'u33333', 'Student', 'B1', '03/03/2020', 'Toowoomba' 'Springfield');
 
 
 CREATE TABLE PassengerTracking (
 	passengerId varchar(50) NOT NULL,
 	passengerType varchar(50) NOT NULL,
+	bookingDate datetime(50) NOT NULL,
 	stopLocation varchar(50) NOT NULL,
 	onTime varchar(50) NULL,
 	offTime varchar(50) NULL,
 	finished BOOLEAN NULL,
-	PRIMARY KEY (driverIdId, driverUsername)
+	PRIMARY KEY (passengerId, bookingDate, stopLocation, offTime)
 ); 
 
 
@@ -101,7 +106,7 @@ CREATE TABLE PassengerMetrics (
 	PRIMARY KEY (passengerCount, busNumber)
 )
 
-CREATE TABLE metricsLogin (
+CREATE TABLE MetricsLogin (
 	userId varchar(50) NOT NULL AUTO_INCREMENT,
 	username varchar(50) NOT NULL,
 	email varchar(50) NOT NULL,
@@ -109,7 +114,7 @@ CREATE TABLE metricsLogin (
 	PRIMARY KEY (userId, username)
 )
 
-INSERT INTO metricsLogin VALUES
+INSERT INTO MetricsLogin VALUES
 ('1','user1','user1@usq.edu.au','test1'),
 ('2','user2','user2@usq.edu.au','test1');
 
