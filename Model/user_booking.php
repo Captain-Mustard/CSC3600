@@ -27,7 +27,11 @@ function insert_trip_booking($passenger_id, $passenger_type, $bus_number,
 
 # insert into passengerTracking i.e when a user books this should be ran as well.
 
-
+function insert_into_tracking(){
+	
+	
+	
+}
 
 # gets the bus trip specfied by  date 
 function get_trip_by_date($bus_date){
