@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS shuttle_bus;
 CREATE DATABASE shuttle_bus;
 USE shuttle_bus;
 
@@ -8,12 +9,12 @@ CREATE TABLE SpringfieldBound (
     ipswichStop varchar(10) NOT NULL,
 	springfieldCentral varchar(10) NOT NULL,
 	todaysDay varchar(10) NOT NULL, -- day is an sql value
-    PRIMARY KEY (buNo, toowoombaDepart)
+    PRIMARY KEY (busNo, toowoombaDepart)
 );
 
 
 INSERT INTO SpringfieldBound VALUES 
-('B1','0630','','','','Monday'),
+('B1','0630','','','','Monday');
 
 
 CREATE TABLE ToowoombaBound (
@@ -23,12 +24,12 @@ CREATE TABLE ToowoombaBound (
 	plainlandStop varchar(10) NOT NULL,
 	toowoombaStop varchar(10) NOT NULL,
 	day varchar(10) NOT NULL,
-    PRIMARY KEY (buNo, springfieldDepartDepart)
+    PRIMARY KEY (busNo, springfieldDepart)
 );
 
 
-INSERT INTO ToowoombaBoundBound VALUES 
-('B2','0630','','','','Monday'),
+INSERT INTO ToowoombaBound VALUES 
+('B2','0630','','','','Monday');
 
 
 
@@ -74,22 +75,22 @@ CREATE TABLE BusTrips (
 	passengerId varchar(50) NOT NULL, -- foreing key to unisqId -- might not need it.
 	passengerType varchar(50) NOT NULL,
 	busNumber varchar(50) NOT NULL,
-	busDate datetime(50) NOT NULL,
+	busDate datetime(6) NOT NULL,
 	startLocation varchar(50) NOT NULL,
 	stopLocation varchar(50) NOT NULL,
 	PRIMARY KEY (passengerNumber)
 );
 
 INSERT INTO BusTrips VALUES -- fake data
-(1, 'u11111', 'Student', 'B1', '01/01/2020', 'Toowoomba' 'Springfield'),
-(2, 'u22222', 'Staff', 'B2', '02/02/2020', 'Toowoomba' 'Springfield'),
-(3, 'u33333', 'Student', 'B1', '03/03/2020', 'Toowoomba' 'Springfield');
+(1, 'u11111', 'Student', 'B1', '01/01/2020', 'Toowoomba', 'Springfield'),
+(2, 'u22222', 'Staff', 'B2', '02/02/2020', 'Toowoomba', 'Springfield'),
+(3, 'u33333', 'Student', 'B1', '03/03/2020', 'Toowoomba', 'Springfield');
 
 
 CREATE TABLE PassengerTracking (
 	passengerId varchar(50) NOT NULL,
 	passengerType varchar(50) NOT NULL,
-	bookingDate datetime(50) NOT NULL,
+	bookingDate datetime(6) NOT NULL,
 	stopLocation varchar(50) NOT NULL,
 	onTime varchar(50) NULL,
 	offTime varchar(50) NULL,
@@ -99,24 +100,24 @@ CREATE TABLE PassengerTracking (
 
 
 CREATE TABLE PassengerMetrics (
-	passengerCount int NOT NULL AUTO_INCREMENT,
-	busNumber varchar(10) NOT NULL,
-	destination varchar(50) NULL,
-	dayTime datetime NOT NULL,
-	PRIMARY KEY (passengerCount, busNumber)
-)
+    passengerCount INT NOT NULL AUTO_INCREMENT,
+    busNumber VARCHAR(10) NOT NULL,
+    destination VARCHAR(50) NULL,
+    dayTime DATETIME NOT NULL,
+    PRIMARY KEY (passengerCount, busNumber)
+);
 
 CREATE TABLE MetricsLogin (
-	userId varchar(50) NOT NULL AUTO_INCREMENT,
-	username varchar(50) NOT NULL,
-	email varchar(50) NOT NULL,
-	password varchar(50) NOT NULL,
-	PRIMARY KEY (userId, username)
-)
+    userId INT NOT NULL AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    password VARCHAR(50) NOT NULL,
+    PRIMARY KEY (userId)
+);
 
 INSERT INTO MetricsLogin VALUES
-('1','user1','user1@usq.edu.au','test1'),
-('2','user2','user2@usq.edu.au','test1');
+(1,'user1','user1@usq.edu.au','test1'),
+(2,'user2','user2@usq.edu.au','test1');
 
 -- Create a db user
 GRANT SELECT, INSERT, UPDATE, DELETE
