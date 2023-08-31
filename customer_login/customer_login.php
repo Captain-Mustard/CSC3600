@@ -6,7 +6,7 @@
 
 <main>
 
-    <h2>Customer Login</h2>
+    <h2>User Login</h2>
 		
     <!-- display a search form -->
     <form action="." method="post">
@@ -15,20 +15,28 @@
 			value="" required>
 		
 		<label for="password">Password:</label>
-			<input type="text" id="password" name="password" 
+			<input type="password" id="password" name="password" 
 			value="" required>
 		
 		
 		
 		
-			<input type="hidden" name="action" value="login_customer">
+			<input type="hidden" name="action" value="logged_in">
                 
 			<input type="submit" value="Login">
     </form>
 	
+	<form>
+		
+		  <input type="hidden" name="action" value="create_user">
+                
+			<input type="submit" value="Login">
+	
+	</form>
+	
 	<?php  //to hash the password
 	
-		$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+		//$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 	
 	?>
 	
