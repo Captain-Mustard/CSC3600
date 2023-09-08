@@ -14,12 +14,13 @@ function get_passenger($uni_id) {
 /* Still working progress*/
 
 # validates user login 
-function login_check($username) {
+function login_check($username, $password) {
     global $db;
-    $query = 'SELECT * FROM Passengers
-			 WHERE unisqId = :user_name';
+    $query = 'SELECT unisq_Id FROM Passengers
+			 WHERE unisqId = :user_name AND password = :password';
     $statement = $db->prepare($query);
     $statement->bindValue(':user_name', $username);
+	$statement->bindValue(':password', $password);
     $statement->execute();
     $user = $statement->fetch();
     $statement->closeCursor();

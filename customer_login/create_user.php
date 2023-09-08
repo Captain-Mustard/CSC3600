@@ -19,7 +19,7 @@
 
         <label>Password:</label>
         <input type="password" name="password" />
-        <label class="test"></label><br>
+        <label class="password"></label><br>
 		
 		
 		

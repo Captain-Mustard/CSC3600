@@ -34,20 +34,20 @@ INSERT INTO ToowoombaBound VALUES
 
 
 CREATE TABLE Passengers (
-	unisqId varchar(50) NOT NULL,
-	role varchar(50) NOT NULL,
-	email varchar(50) NOT NULL,
-	password varchar(50) NOT NULL,
+	unisqId varchar(300) NOT NULL,
+	role varchar(300) NOT NULL,
+	email varchar(300) NOT NULL,
+	password varchar(300) NOT NULL,
 	PRIMARY KEY (unisqId, role)
 );
 
 -- test data
 INSERT INTO Passengers VALUES
-('u111111','Staff','u111111@usq.edu.au','test1'),
-('u222222','Student','u222222@usq.edu.au','test1'),
-('u333333','Staff','u333333@usq.edu.au','test1'),
-('u444444','Student','u444444@usq.edu.au','test1'),
-('u555555','Staff','u555555@usq.edu.au','test1');
+('u111111','Staff','u111111@usq.edu.au','$2y$10$XGBzgxAE8Wsp3Lg2mEoxdOeUQYRsxhLW8jb5A/Fqc3kFQx9rgY6MW'),
+('u222222','Student','u222222@usq.edu.au','$2y$10$XGBzgxAE8Wsp3Lg2mEoxdOeUQYRsxhLW8jb5A/Fqc3kFQx9rgY6MW'),
+('u333333','Staff','u333333@usq.edu.au','$2y$10$XGBzgxAE8Wsp3Lg2mEoxdOeUQYRsxhLW8jb5A/Fqc3kFQx9rgY6MW'),
+('u444444','Student','u444444@usq.edu.au','$2y$10$XGBzgxAE8Wsp3Lg2mEoxdOeUQYRsxhLW8jb5A/Fqc3kFQx9rgY6MW'),
+('u555555','Staff','u555555@usq.edu.au','$2y$10$XGBzgxAE8Wsp3Lg2mEoxdOeUQYRsxhLW8jb5A/Fqc3kFQx9rgY6MW');
 
 
 

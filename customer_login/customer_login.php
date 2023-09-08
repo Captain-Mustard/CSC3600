@@ -30,13 +30,13 @@
 		
 		  <input type="hidden" name="action" value="create_user">
                 
-			<input type="submit" value="Login">
+			<input type="submit" value="Create New user">
 	
 	</form>
 	
-	<?php  //to hash the password
+	<?php  
 	
-		//$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+		
 	
 	?>
 	
