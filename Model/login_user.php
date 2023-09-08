@@ -59,11 +59,12 @@ function get_driver_login($driver_username) {
 
 # metrics account login
 
-function get_metrics_account($metric_username, $password) {
+function get_metrics_account($metric_username) {
     global $db;
     $query = 'SELECT * FROM MetricsLogin
-              WHERE username = :metric_username AND password = :password';
+              WHERE username = :metric_username';
     $statement = $db->prepare($query);
+	$statement->bindValue(':metric_username', $metric_username);
     $statement->execute();
     $metric_login = $statement->fetch();
     $statement->closeCursor();

@@ -12,9 +12,14 @@ if ($action === NULL) {
             if (isset($_SESSION['user_type']) && $_SESSION['user_type'] == "customer") {
                 $action = 'home_page';
                 
-            } elseif (isset($_SESSION['user_type']) && $_SESSION['user_type'] == "driver") {
-                session_destroy();
-				header('Location: ../customer_login/');
+            } elseif (isset($_SESSION['user_type']) && $_SESSION['user_type'] != "customer") {
+                if($_SESSION['user_type'] == "driver"){
+					
+					header('Location: ../driver_login/');
+				}else if($_SESSION['user_type'] == "analytics"){
+					
+					header('Location: ../analytics_login/');
+				}
                 
             }
         } else {

@@ -111,13 +111,13 @@ CREATE TABLE MetricsLogin (
     userId INT NOT NULL AUTO_INCREMENT,
     username VARCHAR(50) NOT NULL,
     email VARCHAR(50) NOT NULL,
-    password VARCHAR(50) NOT NULL,
+    password VARCHAR(300) NOT NULL,
     PRIMARY KEY (userId)
 );
 
 INSERT INTO MetricsLogin VALUES
-(1,'user1','user1@usq.edu.au','test1'),
-(2,'user2','user2@usq.edu.au','test1');
+(1,'user1','user1@usq.edu.au','$2y$10$PeXl22RDAKCpVWAU6f0.l.vbfhkpSqVB21Gx3mQ5pTl27i2T1Q06q'),
+(2,'user2','user2@usq.edu.au','$2y$10$PeXl22RDAKCpVWAU6f0.l.vbfhkpSqVB21Gx3mQ5pTl27i2T1Q06q');
 
 -- Create a db user
 GRANT SELECT, INSERT, UPDATE, DELETE

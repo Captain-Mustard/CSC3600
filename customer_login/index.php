@@ -15,9 +15,14 @@ if ($action === NULL) {
             if (isset($_SESSION['user_type']) && $_SESSION['user_type'] == "customer") {
                 header('Location: ../booking_platform/');
                 exit();
-            } elseif (isset($_SESSION['user_type']) && $_SESSION['user_type'] == "driver") {
-                session_destroy();
-				$action = 'login_user';
+            } elseif (isset($_SESSION['user_type']) && $_SESSION['user_type'] != "customer") {
+                if($_SESSION['user_type'] == "driver"){
+					
+					header('Location: ../driver_login/');
+				}else if($_SESSION['user_type'] == "analytics"){
+					
+					header('Location: ../analytics_login/');
+				}
                 
             }
         } else {
@@ -42,28 +47,28 @@ else if($action == 'logged_in'){
 	
 	
 	$user_login = login_check($username);
-		$db_username = $user_login['unisqId'];
-		$db_password = $user_login['password'];
-	
-		
-		
-		
-		
-			if(password_verify($password, $db_password)){
-			
-			
-			session_regenerate_id(true); 
-			$_SESSION['loggedin'] = true;
-			$_SESSION['userid'] = $username;
-			$_SESSION['user_type'] = "customer";
-			header('Location: ../booking_platform/'); 
-				
-		
-			} else {
-			
-				$error = 'Username or Password Incorrect';
-				echo $error;
-		} 
+
+if ($user_login && isset($user_login['unisqId']) && isset($user_login['password'])) {
+    $db_username = $user_login['unisqId'];
+    $db_password = $user_login['password'];
+
+    // sets the session
+    if (password_verify($password, $db_password)) {
+        session_regenerate_id(true); 
+        $_SESSION['loggedin'] = true;
+        $_SESSION['userid'] = $username;
+        $_SESSION['user_type'] = "customer";
+        header('Location: ../booking_platform/'); 
+
+    } else {
+        $error = 'Username or Password Incorrect';
+        echo $error;
+    }
+} else {
+    $error = 'Please enter a valid username and password';
+    echo $error;
+}
+
 }
 
 else if ($action == 'create_user') {

@@ -11,17 +11,21 @@ if ($action === NULL) {
             if (isset($_SESSION['user_type']) && $_SESSION['user_type'] == "driver") {
                 $action = 'driver_display';
                 
-            } elseif (isset($_SESSION['user_type']) && $_SESSION['user_type'] == "customer") {
-                session_destroy();
-				header('Location: ../driver_login/');
+            } elseif (isset($_SESSION['user_type']) && $_SESSION['user_type'] != "driver") {
                 
-            }
+				if($_SESSION['user_type'] == "customer"){
+					
+					header('Location: ../customer_login/');
+				}else if($_SESSION['user_type'] == "analytics"){
+					
+					header('Location: ../analytics_login/');
+				}
         } else {
             header('Location: ../driver_login/');
         }
     }
 }
-
+}
 // displays the drivers view
 if($action == 'driver_display'){
 	

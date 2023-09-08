@@ -5,12 +5,12 @@
 
 <main>
 
-    <h2>Driver Login</h2>
+    <h2>Analytics Login</h2>
 		
     <!-- display a search form -->
     <form action="." method="post">
-        <label for="driver_id">Driver Username:</label>
-			<input type="text" id="driver_id" name="driver_id" 
+        <label for="username">Username:</label>
+			<input type="text" id="username" name="username" 
 			value="" required>
 		
 		<label for="password">Password:</label>

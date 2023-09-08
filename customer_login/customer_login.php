@@ -1,5 +1,5 @@
 
-
+<?php include '../view/header.php'; ?>
 <style>
 	
 </style>
@@ -34,10 +34,6 @@
 	
 	</form>
 	
-	<?php  
-	
-		
-	
-	?>
+	<?php include '../view/footer.php'; ?>
 	
 </main>

@@ -15,9 +15,16 @@ if ($action === NULL) {
             if (isset($_SESSION['user_type']) && $_SESSION['user_type'] == "driver") {
                 header('Location: ../driver_platform/');
                 exit();
-            } elseif (isset($_SESSION['user_type']) && $_SESSION['user_type'] == "customer") {
-                session_destroy();
-				$action = 'login_driver';
+            } elseif (isset($_SESSION['user_type']) && $_SESSION['user_type'] != "driver") {
+                
+				if($_SESSION['user_type'] == "customer"){
+					
+					header('Location: ../customer_login/');
+				}else if($_SESSION['user_type'] == "analytics"){
+					
+					header('Location: ../analytics_login/');
+				}
+				
                 
             }
         } else {
@@ -41,12 +48,10 @@ else if($action == 'logged_in'){
 	
 	
 	$user_login = get_driver_login($username);
-		$db_username = $user_login['driverUsername'];
-		$db_password = $user_login['password'];
-	
-		
-		
-		
+		if ($user_login && isset($user_login['driverUsername']) && isset($user_login['password'])) {
+			$db_username = $user_login['driverUsername'];
+			$db_password = $user_login['password'];
+			
 			// sets the session
 			if(password_verify($password, $db_password)){
 			session_regenerate_id(true); 
@@ -57,11 +62,25 @@ else if($action == 'logged_in'){
 				
 		
 			} else {
-			
+				// could display errors better
 				$error = 'Username or Password Incorrect';
 				echo $error;
 		} 
-}
+
+			
+			
+		} else {
+			$error = "Please enter a valid username and password";
+			
+			echo $error;
+		}
+		
+		
+	
+		
+}	
+		
+			
 
 
 
