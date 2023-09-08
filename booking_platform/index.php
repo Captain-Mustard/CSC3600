@@ -2,14 +2,25 @@
 require('../model/database.php');
 session_start();
 
+
+	
 $action = filter_input(INPUT_POST, 'action');
 if ($action === NULL) {
     $action = filter_input(INPUT_GET, 'action');
-    if ($action === NULL AND isset($_SESSION['loggedin']) == FALSE) {
-        $action == 'log_out';
-    } else if ($action === NULL AND isset($_SESSION['loggedin'])) {
-		$action = 'home_page';
-	}
+    if ($action === NULL) {
+        if (isset($_SESSION['loggedin'])) {
+            if (isset($_SESSION['user_type']) && $_SESSION['user_type'] == "customer") {
+                $action = 'home_page';
+                
+            } elseif (isset($_SESSION['user_type']) && $_SESSION['user_type'] == "driver") {
+                session_destroy();
+				header('Location: ../customer_login/');
+                
+            }
+        } else {
+            header('Location: ../customer_login/');
+        }
+    }
 }
 
 if($action == 'home_page'){

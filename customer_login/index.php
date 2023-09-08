@@ -2,6 +2,7 @@
 require('../model/database.php');
 require('../model/login_user.php');
 // starts login session
+
 session_start();
 
 // need to utilise session to ensure users is kept logged in
@@ -9,19 +10,22 @@ session_start();
 $action = filter_input(INPUT_POST, 'action');
 if ($action === NULL) {
     $action = filter_input(INPUT_GET, 'action');
-    if ($action === NULL AND isset($_SESSION['loggedin']) == FALSE) {
-        $action = 'login_user';
-    } else if ($action === NULL AND isset($_SESSION['loggedin']) ){
-		
-		header('Location: ../booking_platform/');
-		
-	}
+    if ($action === NULL) {
+        if (isset($_SESSION['loggedin'])) {
+            if (isset($_SESSION['user_type']) && $_SESSION['user_type'] == "customer") {
+                header('Location: ../booking_platform/');
+                exit();
+            } elseif (isset($_SESSION['user_type']) && $_SESSION['user_type'] == "driver") {
+                session_destroy();
+				$action = 'login_user';
+                
+            }
+        } else {
+            $action = 'login_user';
+        }
+    }
 }
 
-/* if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
-    header("Location: dashboard.php");
-    exit;
-} */
 
 // takes users to the login page
 if ($action == 'login_user') {
@@ -42,13 +46,16 @@ else if($action == 'logged_in'){
 		$db_password = $user_login['password'];
 	
 		
-		//echo password_verify($password, $db_password);
+		
 		
 		
 			if(password_verify($password, $db_password)){
+			
+			
 			session_regenerate_id(true); 
 			$_SESSION['loggedin'] = true;
 			$_SESSION['userid'] = $username;
+			$_SESSION['user_type'] = "customer";
 			header('Location: ../booking_platform/'); 
 				
 		
@@ -88,8 +95,8 @@ else if ($action == 'user_created'){
 	}
 	
 	
-}
-else if ($action == 'logged_out'){
+
+}else if ($action == 'logged_out'){
 	session_destroy(); // This destroys the entire session
 	include('login_user.php');
 }

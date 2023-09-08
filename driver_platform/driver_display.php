@@ -2,9 +2,15 @@
 <main>
     <h2>Driver Page</h2>
     <p>Driver Tools</p>
-    <!-- display -->
-    <form action="." method="post">
-        
-    </form>
+    
+	
+	<!-- logout button -->
+    <form>
+		
+		  <input type="hidden" name="action" value="log_out">
+                
+			<input type="submit" value="Logout">
+	
+	</form>
 </main>
 <?php include '../view/footer.php'; ?>

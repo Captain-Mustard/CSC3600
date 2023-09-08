@@ -10,6 +10,7 @@ if ($action === NULL AND isset($_SESSION['loggedin']) == FALSE){
 
 // new bookings
 ?>
+<p>bookings:</p>
 <form>
 		
 		  <input type="hidden" name="action" value="log_out">

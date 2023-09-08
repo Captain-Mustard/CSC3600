@@ -34,9 +34,9 @@ INSERT INTO ToowoombaBound VALUES
 
 
 CREATE TABLE Passengers (
-	unisqId varchar(300) NOT NULL,
-	role varchar(300) NOT NULL,
-	email varchar(300) NOT NULL,
+	unisqId varchar(50) NOT NULL,
+	role varchar(50) NOT NULL,
+	email varchar(50) NOT NULL,
 	password varchar(300) NOT NULL,
 	PRIMARY KEY (unisqId, role)
 );
@@ -55,18 +55,18 @@ CREATE TABLE BusDriver (
 	driverId varchar(50) NOT NULL,
 	driverUsername varchar(50) NOT NULL,
 	email varchar(50) NOT NULL,
-	password varchar(50) NOT NULL,
+	password varchar(300) NOT NULL,
 	PRIMARY KEY (driverId, driverUsername)
 
 );
 
 -- test data
 INSERT INTO BusDriver VALUES
-('D1','driver1','driver1@usq.edu.au','test1'),
-('D2','driver2','driver2@usq.edu.au','test1'),
-('D3','driver3','udriver3@usq.edu.au','test1'),
-('D4','driver4','udriver44@usq.edu.au','test1'),
-('D5','driver5','udriver5@usq.edu.au','test1');
+('D1','driver1','driver1@usq.edu.au','$2y$10$eWvyaQvCp2CgY2ug.P87mef0KlPXX.0KSsdSeVWMD1D5ravDO5Ici'),
+('D2','driver2','driver2@usq.edu.au','$2y$10$eWvyaQvCp2CgY2ug.P87mef0KlPXX.0KSsdSeVWMD1D5ravDO5Ici'),
+('D3','driver3','udriver3@usq.edu.au','$2y$10$eWvyaQvCp2CgY2ug.P87mef0KlPXX.0KSsdSeVWMD1D5ravDO5Ici'),
+('D4','driver4','udriver44@usq.edu.au','$2y$10$eWvyaQvCp2CgY2ug.P87mef0KlPXX.0KSsdSeVWMD1D5ravDO5Ici'),
+('D5','driver5','udriver5@usq.edu.au','$2y$10$eWvyaQvCp2CgY2ug.P87mef0KlPXX.0KSsdSeVWMD1D5ravDO5Ici');
 
 
 

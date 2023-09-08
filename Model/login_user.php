@@ -45,11 +45,12 @@ function add_passenger($uni_id, $role, $email, $password) {
 }
 
 # driver login
-function get_driver_login($driver_username, $password) {
+function get_driver_login($driver_username) {
     global $db;
     $query = 'SELECT * FROM BusDriver
-              WHERE driverUsername = :driver_username AND password = :password';
+              WHERE driverUsername = :driver_username';
     $statement = $db->prepare($query);
+	$statement->bindValue(':driver_username', $driver_username);
     $statement->execute();
     $driver = $statement->fetch();
     $statement->closeCursor();
