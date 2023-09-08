@@ -1,3 +1,4 @@
+<?php include '../view/header.php'; ?>
 <main>
 
     <h2>Create User</h2>
@@ -10,8 +11,8 @@
         <!-- make drop down -->
 		<label>Role:</label>
         <select name="role">
-			<option value="student">Student</option>
-			<option value="staff">Staff</option>
+			<option value="Student">Student</option>
+			<option value="Staff">Staff</option>
 		</select><br>
 
         <label>Email:</label>
@@ -32,10 +33,6 @@
     </form>
 	
 	
-<?php  
-	
-		
-	
-?>
+<?php include '../view/footer.php'; ?>
 	
 </main>

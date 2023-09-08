@@ -5,6 +5,8 @@ require('../model/login_user.php');
 
 session_start();
 
+
+
 // need to utilise session to ensure users is kept logged in
 
 $action = filter_input(INPUT_POST, 'action');
@@ -83,18 +85,31 @@ else if ($action == 'user_created'){
 	$email = filter_input(INPUT_POST, 'email');
 	$password = filter_input(INPUT_POST, 'password');
 	
+	$user_login = login_check($uni_id);
+	
+	// error handling for user input -- requires proper display of errors
 	if($uni_id == NULL) {
 		$error = "Please enter a UniSQ ID";
-	} 
+	} else if(isset($user_login['unisqId'])){
+		$error = "User already exists";
+		echo $error;
+	}
 	else if($email == NULL){
 		$error = "Please enter an email address";
+		
+	} else if(filter_var($email, FILTER_VALIDATE_EMAIL) == FALSE){
+		
+		$error = "Please enter a valid email address";
+	}
+	else if($password == NULL){
+		$error = "Please enter an password";
 		
 	}
 	else {
 	
-	$make_hashed_password = password_hash($password, PASSWORD_DEFAULT);
+	$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 	
-	add_passenger($uni_id, $role, $email, $make_hashed_password);
+	add_passenger($uni_id, $role, $email, $hashed_password);
 	
 	echo "created user";
 	}
