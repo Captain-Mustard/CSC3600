@@ -104,31 +104,7 @@ function get_trip_by_stop_location($stop_location){
 
 
 
-# lets the bus driver mark passengers as off - like if the bus is empty
-function check_passengers_off($passenger_id, $passenger_type, $booking_date,
-							  $stop_location, $on_time, $off_time, $finised){
-	global $db;
-	$query = 'UPDATE PassengerTracking
-              SET passengerId = :passenger_id,
-				  PassengerType = :passenger_type,
-				  bookingDate = :booking_date,
-				  stopLocation = :stop_location,
-				  onTime = :on_time,
-				  offTime = :off_time,
-				  finised = :finised
-              WHERE passengerId = :passenger_id AND bookingDate = :booking_date 
-			  AND startLocation = :stop_location'
-	$statement = $db->prepare($query);
-	$statement->bindValue(':passenger_id', $passenger_id);
-    $statement->bindValue(':passenger_type', $passenger_type);
-    $statement->bindValue(':booking_date', $booking_date);
-    $statement->bindValue(':stop_location', $stop_location);
-	$statement->bindValue(':on_time', $on_time);
-	$statement->bindValue(':off_time', $off_time);
-	$statement->bindValue(':finised', $finished);
-    $statement->execute();
-    $statement->closeCursor();
-}
+
 
 
 

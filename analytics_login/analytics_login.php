@@ -1,6 +1,8 @@
 <?php include '../view/header.php'; ?>
+<link href="/public/include/css/modern/user-logon.css?cg_code=63e43819fb9d41a4a0a81a382d83dee5&amp;cg_name=HCXdR5X-bywgdXqJMcVmsJIucjYQQBjMvCQPtNRlgN37UbpntoDUdjlajdlpQjdl" rel="stylesheet" type="text/css">
+
 <style>
-	
+	<?php include '../main.css';?>
 </style>
 
 <main>

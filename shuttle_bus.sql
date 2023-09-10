@@ -2,34 +2,43 @@ DROP DATABASE IF EXISTS shuttle_bus;
 CREATE DATABASE shuttle_bus;
 USE shuttle_bus;
 
-CREATE TABLE SpringfieldBound (
-    busNo varchar(10) NOT NULL,
-    toowoombaDepart varchar(10) NOT NULL,
-    plainlandStop varchar(10) NOT NULL,
-    ipswichStop varchar(10) NOT NULL,
-	springfieldCentral varchar(10) NOT NULL,
-	todaysDay varchar(10) NOT NULL, -- day is an sql value
-    PRIMARY KEY (busNo, toowoombaDepart)
+
+
+CREATE TABLE busTimeTable (
+
+	busNo varchar(10) NOT NULL,
+    startStop varchar(50) NOT NULL,
+	finishStop varchar(50) NOT NULL,
+	stopOneTime varchar(10) NOT NULL,
+    stopTwoTime varchar(10) NOT NULL,
+	stopThreeTime varchar(10) NOT NULL,
+	stopFourTime varchar(10) NOT NULL,
+	busDay varchar(10) NOT NULL,
+    PRIMARY KEY (busNo, stopOneTime, busDay)
 );
 
-
-INSERT INTO SpringfieldBound VALUES 
-('B1','0630','','','','Monday');
-
-
-CREATE TABLE ToowoombaBound (
-    busNo varchar(10) NOT NULL,
-    springfieldDepart varchar(10) NOT NULL,
-    ipswichStop varchar(10) NOT NULL,
-	plainlandStop varchar(10) NOT NULL,
-	toowoombaStop varchar(10) NOT NULL,
-	day varchar(10) NOT NULL,
-    PRIMARY KEY (busNo, springfieldDepart)
-);
-
-
-INSERT INTO ToowoombaBound VALUES 
-('B2','0630','','','','Monday');
+-- still need to add springfield 
+INSERT INTO busTimeTable VALUES 
+('B2', 'SpringField' , 'Toowoomba' ,'0630','0715','0745','0845','Monday'),
+('B1', 'SpringField' , 'Toowoomba' ,'1000','1030','1100','1200','Monday'),
+('B2', 'SpringField' , 'Toowoomba' ,'1315','1345','1415','1515','Monday'),
+('B1', 'SpringField' , 'Toowoomba' ,'1615','1645','1715','1815','Monday'),
+('B2', 'SpringField' , 'Toowoomba' ,'0630','0715','0745','0845','Tuesday'),
+('B1', 'SpringField' , 'Toowoomba' ,'1000','1030','1100','1200','Tuesday'),
+('B2', 'SpringField' , 'Toowoomba' ,'1315','1345','1415','1515','Tuesday'),
+('B1', 'SpringField' , 'Toowoomba' ,'1615','1645','1715','1815','Tuesday'),
+('B2', 'SpringField' , 'Toowoomba' ,'0630','0715','0745','0845','Wednesday'),
+('B1', 'SpringField' , 'Toowoomba' ,'1000','1030','1100','1200','Wednesday'),
+('B2', 'SpringField' , 'Toowoomba' ,'1315','1345','1415','1515','Wednesday'),
+('B1', 'SpringField' , 'Toowoomba' ,'1615','1645','1715','1815','Wednesday'),
+('B2', 'SpringField' , 'Toowoomba' ,'0630','0715','0745','0845','Thursday'),
+('B1', 'SpringField' , 'Toowoomba' ,'1000','1030','1100','1200','Thursday'),
+('B2', 'SpringField' , 'Toowoomba' ,'1315','1345','1415','1515','Thursday'),
+('B1', 'SpringField' , 'Toowoomba' ,'1615','1645','1715','1815','Thursday'),
+('B2', 'SpringField' , 'Toowoomba' ,'0630','0715','0745','0845','Friday'),
+('B1', 'SpringField' , 'Toowoomba' ,'1000','1030','1100','1200','Friday'),
+('B2', 'SpringField' , 'Toowoomba' ,'1315','1345','1415','1515','Friday'),
+('B1', 'SpringField' , 'Toowoomba' ,'1615','1645','1715','1815','Friday');
 
 
 
@@ -69,43 +78,43 @@ INSERT INTO BusDriver VALUES
 ('D5','driver5','udriver5@usq.edu.au','$2y$10$eWvyaQvCp2CgY2ug.P87mef0KlPXX.0KSsdSeVWMD1D5ravDO5Ici');
 
 
-
 CREATE TABLE BusTrips (
-	passengerNumber int NOT NULL AUTO_INCREMENT,
-	passengerId varchar(50) NOT NULL, -- foreing key to unisqId -- might not need it.
-	passengerType varchar(50) NOT NULL,
-	busNumber varchar(50) NOT NULL,
-	busDate datetime(6) NOT NULL,
-	startLocation varchar(50) NOT NULL,
-	stopLocation varchar(50) NOT NULL,
-	PRIMARY KEY (passengerNumber)
+    tripId INT NOT NULL AUTO_INCREMENT,
+    unisqId VARCHAR(50) NOT NULL, 
+    role VARCHAR(50) NOT NULL,
+    scheduleId INT NOT NULL, -- Foreign Key to BusSchedules table
+    offTime TIME(6) NULL,
+    finished BOOLEAN NULL,
+    PRIMARY KEY (tripId),
+    FOREIGN KEY (unisqId, role) REFERENCES Passengers(unisqId, role)
+    
 );
 
 INSERT INTO BusTrips VALUES -- fake data
-(1, 'u11111', 'Student', 'B1', '01/01/2020', 'Toowoomba', 'Springfield'),
-(2, 'u22222', 'Staff', 'B2', '02/02/2020', 'Toowoomba', 'Springfield'),
-(3, 'u33333', 'Student', 'B1', '03/03/2020', 'Toowoomba', 'Springfield');
+(1, 'u111111','Staff', 1, NULL, NULL ),
+(2, 'u222222','Student', 2, NULL, NULL ),
+(3, 'u333333','Staff', 3, NULL, NULL ),
+(4, 'u444444','Student', 1, NULL, NULL );
 
 
-CREATE TABLE PassengerTracking (
-	passengerId varchar(50) NOT NULL,
-	passengerType varchar(50) NOT NULL,
-	bookingDate datetime(6) NOT NULL,
-	stopLocation varchar(50) NOT NULL,
-	onTime varchar(50) NULL,
-	offTime varchar(50) NULL,
-	finished BOOLEAN NULL,
-	PRIMARY KEY (passengerId, bookingDate, stopLocation, offTime)
-); 
-
-
-CREATE TABLE PassengerMetrics (
-    passengerCount INT NOT NULL AUTO_INCREMENT,
-    busNumber VARCHAR(10) NOT NULL,
-    destination VARCHAR(50) NULL,
-    dayTime DATETIME NOT NULL,
-    PRIMARY KEY (passengerCount, busNumber)
+CREATE TABLE BusSchedules (
+    scheduleId INT NOT NULL AUTO_INCREMENT,
+    tripDay VARCHAR(50) NOT NULL, 
+    busNumber VARCHAR(50) NOT NULL, 
+    busDate DATE NOT NULL,
+    busTime TIME(6) NOT NULL, 
+    startLocation VARCHAR(50) NOT NULL, 
+    stopLocation VARCHAR(50) NOT NULL, 
+    PRIMARY KEY (scheduleId)
 );
+
+INSERT INTO BusSchedules VALUES -- fake data
+(1, 'Monday', 'B1', '2023-09-10', '1000', 'Springfield', 'Toowoomba'),
+(2, 'Tuesday', 'B2', '2023-09-10', '0630', 'Springfield', 'Toowoomba'),
+(3, 'Tuesday', 'B1', '2023-09-10', '1000', 'Springfield', 'Toowoomba');
+
+
+
 
 CREATE TABLE MetricsLogin (
     userId INT NOT NULL AUTO_INCREMENT,
