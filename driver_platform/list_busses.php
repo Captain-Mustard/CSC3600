@@ -1,6 +1,6 @@
 <?php include '../view/header.php'; ?>
 <h1>Todays Trips</h1>
-    <!-- display a table of product -->
+    <!-- display a table of the days trips -->
     <table>
         <tr>
             <th>Bus Number: </th>
