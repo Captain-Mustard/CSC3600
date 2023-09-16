@@ -71,5 +71,49 @@ function get_metrics_account($metric_username) {
     return $metric_login;
 }
 
+# insert new user
+function insert_new_passenger($uni_id, $role, $email, $password) {
+    global $db;
+
+
+    $query = 'INSERT INTO Passengers
+                 (unisqId, role, email, password)
+              VALUES
+                 (:uni_id, :role, :email, :password)';
+
+  
+    $statement = $db->prepare($query);
+    $statement->bindValue(':uni_id', $uni_id);
+    $statement->bindValue(':role', $role);
+    $statement->bindValue(':email', $email);
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    $statement->bindValue(':password', $hashed_password);
+    $statement->execute();
+    $statement->closeCursor();
+}
+
+
+# create a new driver
+function insert_new_bus_driver($driver_id, $driver_username, $email, $password) {
+    global $db;
+
+    $query = 'INSERT INTO BusDriver
+                 (driverId, driverUsername, email, password)
+              VALUES
+                 (:driver_id, :driver_username, :email, :password)';
+
+    $statement = $db->prepare($query);
+
+    $statement->bindValue(':driver_id', $driver_id);
+    $statement->bindValue(':driver_username', $driver_username);
+    $statement->bindValue(':email', $email);
+    
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    $statement->bindValue(':password', $hashed_password);
+
+    $statement->execute();
+
+    $statement->closeCursor();
+}
 
 ?>

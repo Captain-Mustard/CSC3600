@@ -1,102 +1,77 @@
 <?php
 
 # inserts into trips for when a trip is booked by a passenger
-function insert_trip_booking($passenger_id, $passenger_type, $bus_number, 
- $bus_date, $start_location, $stop_location){
+# off_time and finished can be null
+function insert_trip_booking($trip_id, $uni_id, $role, $schedule_id, $off_time, $finished ){
 	global $db;
     $query = 'INSERT INTO BusTrips
-                 (passengerId, passengerType, busNumber, 
-				  busDate, startLocation, stopLocation)
+                 ( tripId, unisqId,  role, 
+				  scheduleId, offTime, finished)
               VALUES
-                 (:passenger_id, :passenger_type, :bus_number,
-				  :bus_date, :start_location, :stop_location)';
+                 (:trip_id, :uni_id, :role, :schedule_id, 
+				  :off_time, :finished )';
     $statement = $db->prepare($query);
-    $statement->bindValue(':passenger_id', $passenger_id);
-    $statement->bindValue(':passenger_type', $passenger_type);
+    $statement->bindValue(':trip_id', $trip_id);
+    $statement->bindValue(':uni_id', $uni_id);
+    $statement->bindValue(':role', $role);
+    $statement->bindValue(':schedule_id', $schedule_id);
+	$statement->bindValue(':off_time', $off_time);
+	$statement->bindValue(':finished', $finished);
+    $statement->execute();
+    $statement->closeCursor();
+	
+	
+	
+}
+
+# update the booking to mark passengers offTime
+function update_trip_booking($trip_id, $uni_id, $off_time, $finished) {
+    global $db;
+    
+    // Create the SQL update query
+    $query = 'UPDATE BusTrips
+              SET offTime = :off_time, finished = :finished
+              WHERE tripId = :trip_id AND unisqId = :uni_id';
+    
+    // Prepare the statement
+    $statement = $db->prepare($query);
+    
+    // Bind the values
+    $statement->bindValue(':trip_id', $trip_id);
+    $statement->bindValue(':uni_id', $uni_id);
+    $statement->bindValue(':off_time', $off_time);
+    $statement->bindValue(':finished', $finished);
+    
+    // Execute the query
+    $statement->execute();
+    
+    // Close the cursor
+    $statement->closeCursor();
+}
+
+
+
+# youll have to check if a busSchedule for the day and date exist and insert one if it doesnt!
+# scheduleId from this goes into the above table for the day
+function insert_bus_schedule($schedule_id, $trip_day, $bus_number, $bus_date,
+							 $bus_time, $start_location $stop_location){
+	global $db;
+    $query = 'INSERT INTO BusSchedules
+                 ( scheduleId, tripDay, busNumber, busDate,
+				   busTime, startLocation, stopLocation)
+              VALUES
+                 ( :schedule_id, :trip_day, :bus_number, :bus_date,
+				   :bus_time, :start_location, :stop_location)';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':schedule_id', $schedule_id);
+    $statement->bindValue(':trip_day', $trip_day);
     $statement->bindValue(':bus_number', $bus_number);
     $statement->bindValue(':bus_date', $bus_date);
+	$statement->bindValue(':bus_time', $bus_time);
 	$statement->bindValue(':start_location', $start_location);
 	$statement->bindValue(':stop_location', $stop_location);
     $statement->execute();
     $statement->closeCursor();
-	
-	
-	
-}
-
-
-# insert into passengerTracking i.e when a user books this should be ran as well.
-
-function insert_into_tracking($passenger_id, $passenger_type, $booking_date,
-							  $stop_location, $on_time, $off_time, $finised){
-	global $db;
-    $query = 'INSERT INTO PassengerTracking
-                 (passengerId, passengerType, bookingDate,  
-				  stopLocation, onTime, offTime, finished)
-              VALUES
-                 (:passenger_id, :passenger_type, :booking_date,
-				  :stop_location, :on_time, :off_time, :finished)';
-    $statement = $db->prepare($query);
-    $statement->bindValue(':passenger_id', $passenger_id);
-    $statement->bindValue(':passenger_type', $passenger_type);
-    $statement->bindValue(':booking_date', $booking_date);
-    $statement->bindValue(':stop_location', $stop_location);
-	$statement->bindValue(':on_time', $on_time);
-	$statement->bindValue(':off_time', $off_time);
-	$statement->bindValue(':finised', $finished);
-    $statement->execute();
-    $statement->closeCursor();
-	
-	
-}
-
-# gets the bus trip specfied by  date 
-function get_trip_by_date($bus_date){
-	global $db;
-    $query = 'SELECT * FROM BusTrips
-              ORDER BY busDate
-			  WHERE busDate = :bus_date'
-			  
-    $statement = $db->prepare($query);
-    $statement->bindValue(':bus_date', $bus_date);
-	$statement->execute();
-    $bus_trip_date = $statement->fetchAll();
-    $statement->closeCursor();
-    return $bus_trip_date;
-	
-	
-}
-
-# gets bus by location type
-function get_trip_by_start_location($start_location){
-	global $db;
-    $query = 'SELECT * FROM BusTrips
-              ORDER BY busDate
-			  WHERE startLocation = :start_location'
-			  
-    $statement = $db->prepare($query);
-    $statement->bindValue(':start_location', $start_location);
-	$statement->execute();
-    $bus_trip_date = $statement->fetchAll();
-    $statement->closeCursor();
-    return $bus_start_location;
-	
-	
-}
-
-
-function get_trip_by_stop_location($stop_location){
-	global $db;
-    $query = 'SELECT * FROM BusTrips
-              ORDER BY busDate
-			  WHERE stopLocation = :stop_location'
-			  
-    $statement = $db->prepare($query);
-    $statement->bindValue(':stop_location', $stop_location);
-	$statement->execute();
-    $bus_trip_date = $statement->fetchAll();
-    $statement->closeCursor();
-    return $bus_stop_location;
 	
 	
 	

@@ -41,6 +41,7 @@ if($action == 'driver_display'){
 	
 	
 }
+// list busses for the day
 else if($action == 'list_busses') {
 	
 	$destination = filter_input(INPUT_POST, 'destination');
