@@ -68,8 +68,7 @@ else if($action = 'get_passengers'){
 	if(isset($get_bus_schedule['scheduleId']) == false){
 		
 		// take driver to a booking page
-		// requires a booking page
-		echo "booking page";
+		include('../booking_platform/home_page.php');
 	}
 	
 	else{
