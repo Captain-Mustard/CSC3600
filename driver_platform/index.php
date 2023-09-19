@@ -41,6 +41,7 @@ if($action == 'driver_display'){
 	
 	
 }
+// list busses for the day
 else if($action == 'list_busses') {
 	
 	$destination = filter_input(INPUT_POST, 'destination');
@@ -68,8 +69,7 @@ else if($action = 'get_passengers'){
 	if(isset($get_bus_schedule['scheduleId']) == false){
 		
 		// take driver to a booking page
-		// requires a booking page
-		echo "booking page";
+		include('../booking_platform/home_page.php');
 	}
 	
 	else{

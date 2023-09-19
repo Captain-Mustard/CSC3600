@@ -4,15 +4,18 @@
 	<h2>Driver Page</h2>
     <p>Driver Tools</p>
     <form action="." method="post">
-			<label for="destination">Choose a destination:</label>
+		<label for="destination">Choose a destination:</label>
 
 			<select id="destination" name="destination">
 				<option value="toowoomba">Toowoomba</option>
-				<!-- <option value="Springfield">Springfield</option> -->
+				<option value="Springfield">Springfield</option>
 			</select>
 			 <input type="hidden" name="action" value="list_busses">
-                
-			 <input type="submit" value="Go">
+			</br>
+			<label for="day">Choose a day:</label>
+			<input type="date"/>
+
+			<input type="submit" value="Go">
 	</form>
 	<!-- logout button -->
     <form>
