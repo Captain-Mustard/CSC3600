@@ -57,7 +57,7 @@ function get_passengers_by_schedule_ID($schedule_id){
 }
 
 
-# lets driver add passenger to their bus
+# lets driver add passenger to their bus - available in user booking
 
 
 
@@ -65,13 +65,22 @@ function get_passengers_by_schedule_ID($schedule_id){
 
 
 
-# lets the bus driver mark passengers as off - like if the bus is empty
+# lets the bus driver mark a passenger as off 
+function mark_off_passenger($off_time, $finished, $trip_id, $uni_id) {
+    global $db;
+    $query = 'UPDATE BusTrips
+              SET offTime = :off_time,
+				  finished = :finished
+              WHERE tripId = :trip_id AND unisqId = :uni_id';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':off_time', $off_time);
+    $statement->bindValue(':finished', $finished);
+    $statement->bindValue(':trip_id', $trip_id);
+    $statement->bindValue(':uni_id', $uni_id);
+    $statement->execute();
+    $statement->closeCursor();
+}
 
-
-
-
-
-#function check_passengers_off_by_trip_id($trip_id){}
 
 
 ?>
