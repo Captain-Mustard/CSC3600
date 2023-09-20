@@ -13,11 +13,26 @@
             <input type="time" id="time_entry" name="time_entry"/>
             <br/>
             <label for="bus_no">Bus Number:</label>
-            <input type="select" id="bus_no" name="bus_no"/><br/>
+            <select id="bus_no" name="bus_no">
+                <option value="b1">B1</option>
+                <option value="b2">B2</option>
+            </select><br/>
             <label for="trip_start">Start:</label>
-            <input type="select" id="trip_start" name="trip_start"/><br/>
+            <select id="trip_start" name="trip_start">
+                <option value="toowoomba">Toowoomba</option>
+                <option value="springfield">Springfield</option>
+                <option value="springfield_central">Springfield Central</option>
+                <option value="ipswich">Ipswich</option>
+                <option value="plainland">Plainland</option>
+            </select><br/>
             <label for="destination">Destination:</label>
-            <input type="select" id="destination" name="destination"/>
+            <select id="destination" name="destination">
+                <option value="toowoomba">Toowoomba</option>
+                <option value="springfield">Springfield</option>
+                <option value="springfield_central">Springfield Central</option>
+                <option value="ipswich">Ipswich</option>
+                <option value="plainland">Plainland</option>
+            </select>
             <br/>
             <button onclick="SubmitEvent">Create Booking</button>
         </form>
