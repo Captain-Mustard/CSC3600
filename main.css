@@ -1,0 +1,152 @@
+/* Reset some default styles */
+body,
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Set a background color and font for the entire page */
+body {
+  background-color: #f4f4f4;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Header styles */
+header {
+  background-color: #f4f4f4;
+  color: #333;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Header logo */
+.header-left img {
+    max-width: 200px; /* Adjust the width of the logo as needed */
+    margin-right: 100px; /* Add spacing between the logo and the text */
+    vertical-align: middle; /* Align the logo vertically in the same line as text */
+}
+
+/* Header title (h1) */
+.header-center h1 {
+  margin: 0;
+  font-size: 1.5rem; /* Adjust the font size as needed */
+  text-align: center;
+}
+
+/* Header navigation (nav) */
+header nav {
+  flex: 1; /* Make the navigation flex container expand to fill available space */
+  padding-right: 50%; /* Add right margin to push the links away from the right edge */
+}
+
+/* Header navigation links (ul and li) */
+header nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center; /* Center the navigation links horizontally */
+}
+
+.header-right nav ul li {
+  margin-right: 20px;
+}
+
+.header-right nav ul li:last-child {
+  margin-right: 0;
+}
+
+.header-right nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Style the navigation menu */
+.navbar {
+  background-color: #003366;
+  overflow: hidden;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: #fff;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  background-color: #002855; /* Slightly darker blue on hover */
+}
+
+/* Center the main content vertically and horizontally */
+main {
+    display: flex;
+    align-items: center; /* Vertically center the content */
+    justify-content: center; /* Horizontally center the content */
+}
+
+/* Style the navigation container */
+main nav {
+    text-align: left; /* Align the text to the left within the navigation */
+}
+
+/* Footer styles */
+footer {
+  text-align: center;
+  padding: 20px 0;
+  position: absolute;
+  bottom: 0; /* Stick the footer to the bottom of the screen */
+  width: 100%; /* Make the footer span the entire width */
+}
+
+footer p {
+  margin: 0; /* Remove default margin for the <p> element */
+}
+
+/* First paragraph style */
+footer .first-paragraph {
+  background-color: #ffb448;
+  color: #3c2d4d;
+  padding: 50px 27.5%; /* Adjust padding as needed */
+  text-align: center;
+  line-height: 2rem; /* Match the line-height */
+  font-size: 1.186rem;
+}
+
+/* Logo style */
+.footer-logo {
+  max-width: 200px; /* Adjust the width of the logo as needed */
+  margin-right: 100px; /* Add spacing between the logo and the text */
+  vertical-align: middle; /* Align the logo vertically in the same line as text */
+}
+
+/* Copyright text style */
+footer .copyright {
+  background-color: #3c2d4d;
+  color: #fff; /* Text color */
+  padding: 50px 27.5%; /* Adjust padding as needed */
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex; /* Use flexbox to center content */
+  align-items: center; /* Center content vertically */
+  justify-content: center; /* Center content horizontally */
+  font-size: 1.5rem; /* Increase font size */
+}
+
+/* Apply a basic styling to links */
+a {
+  color: #003366;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
