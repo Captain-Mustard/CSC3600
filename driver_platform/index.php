@@ -22,7 +22,7 @@ if ($action === NULL) {
 					header('Location: ../analytics_login/');
 				}
         } else {
-            header('Location: ../driver_login/');
+            header('Location: ../driver_login/'); 
         }
     }
 }
@@ -30,9 +30,6 @@ if ($action === NULL) {
 // displays the drivers view
 if($action == 'driver_display'){
 
-
-  
-	
     $todays_day = date('l'); // this gets todays name
     
 	$monday = 'Monday'; // hardcoded day as was testing on sunday
@@ -45,43 +42,59 @@ if($action == 'driver_display'){
 else if($action == 'list_busses') {
 	
 	$destination = filter_input(INPUT_POST, 'destination');
+	$date = '2023-09-10';
 	$day = 'Monday';
 	
 	$trips = get_days_trips($day, $destination);
-	
-	
-	
 	
 	include('list_busses.php');
 	
 }
 
-else if($action = 'get_passengers'){
+else if($action == 'get_passengers'){
 	// takes todays date and output all bookings for the specific time and destination
 	
 	$destination = filter_input(INPUT_POST, 'destination');
 	$bus_time = filter_input(INPUT_POST, 'bus_time');
-	$date = date('Y-m-d');
-	$day = 'Monday';
+	$date = '2023-09-10';
+	$day = 'Monday'; 
+	$scheduleId = '1';
 	
 	$get_bus_schedule = get_bus_schedule($date, $day, $bus_time, $destination);
 	
-	if(isset($get_bus_schedule['scheduleId']) == false){
+	#Commented out whilst testing (using 10/09/2023 for testing).
+	#if(isset($get_bus_schedule['scheduleId']) == false){
 		
-		// take driver to a booking page
-		include('../booking_platform/home_page.php');
+		// take driver to a booking page 
+		#include('../booking_platform/home_page.php');
+
+		$bus_schedule = $get_bus_schedule['scheduleId'];
+		$passengers_on_trips = get_passengers_by_schedule_ID($bus_schedule);
+
+		include('list_passengers.php');
+
+	#}
+	
+	#commented out whilst testing.
+	#else{
+		#$bus_schedule = $get_bus_schedule['scheduleId'];
+		#$passengers_on_trips = get_passengers_by_schedule_ID($bus_schedule);
+		#include('list_passengers.php');
 	}
-	
-	else{
-	
-	$bus_schedule = $get_bus_schedule['scheduleId'];
-	
-	
-	
-	$passengers_on_trips = get_passengers_by_schedule_ID($bus_schedule);
-	
-	include('list_passengers.php');
-	}
+
+
+else if ($action == 'passenger_marked_off'){
+
+	$off_time = filter_input(INPUT_POST, 'off_time');
+	$finished = 'True' ;
+	$trip_id = filter_input(INPUT_POST,'trip_id');
+	$uni_id = filter_input(INPUT_POST, 'uni_id');
+
+	$passengers_off = mark_off_passenger($off_time, $finished, $trip_id, $uni_id);
+
+	include('check_off_passenger.php');
+
+
 }
 
 
@@ -94,5 +107,4 @@ else if($action == 'log_out'){
 
 
 ?>
-
 
