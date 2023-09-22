@@ -13,7 +13,7 @@
 
         <h2>Driver Platform</h2>
         <ul>
-            <li><a href="driver_platform">Bus Driver Admin</a></li>
+            <li><a href="driver_login">Bus Driver Admin</a></li>
         </ul>
     </nav>
 </main>
