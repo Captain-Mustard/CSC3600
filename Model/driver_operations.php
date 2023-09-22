@@ -78,7 +78,9 @@ function mark_off_passenger($off_time, $finished, $trip_id, $uni_id) {
     $statement->bindValue(':trip_id', $trip_id);
     $statement->bindValue(':uni_id', $uni_id);
     $statement->execute();
+    $marked_off = $statement->fetch();
     $statement->closeCursor();
+    return $marked_off;
 }
 
 
