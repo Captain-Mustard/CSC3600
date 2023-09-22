@@ -13,14 +13,34 @@
             <td><?php echo htmlspecialchars($passengers_on_trip['unisqId']); ?></td>
             <td><?php echo htmlspecialchars($passengers_on_trip['role']); ?></td>
 			<td><?php echo htmlspecialchars($passengers_on_trip['finished']); ?></td>
-            <td><form action="." method="post">
+
+                <td><form action="." method="post">
+
+                <input type="hidden" name="uni_id"
+                value="<?php echo htmlspecialchars($passengers_on_trip['unisqId']);?>">
+
+                <input type="hidden" name="off_time"
+                value="<?php echo htmlspecialchars($passengers_on_trip['offTime']);?>">
+
+                <input type="hidden" name="trip_id"
+                value="<?php echo htmlspecialchars($passengers_on_trip['tripId']);?>">
+              
                 <input type="hidden" name="action"
-                       value="mark_off">
+                       value="passenger_marked_off">
+
+
+            <input type="submit" value="Check Off Bus">
                  
-                <input type="submit" value="Check Off Bus">
+                
             </form></td>
         </tr>
         <?php endforeach; ?>
     </table>
+
+
+
+    <form action="../booking_platform/new_booking.html" method="post">
+                <input type="submit" value="Create New Booking:">
+    </form>
 	
 <?php include '../view/footer.php'; ?>
