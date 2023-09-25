@@ -95,6 +95,12 @@ INSERT INTO BusTrips VALUES -- fake data
 (2, 'u222222','Student', 2, NULL, NULL ),
 (3, 'u333333','Staff', 3, NULL, NULL ),
 (4, 'u444444','Student', 1, NULL, NULL );
+(5, 'u111111', 'Staff', 1, '10:30:00', 1), -- Finished trip with an offTime
+(6, 'u222222', 'Student', 2, NULL, 0),     -- Ongoing trip with no offTime
+(7, 'u333333', 'Staff', 3, '14:45:00', 1), -- Finished trip with an offTime
+(8, 'u444444', 'Student', 1, '12:15:00', 1),-- Finished trip with an offTime
+(9, 'u111111', 'Staff', 2, NULL, 0),        -- Ongoing trip with no offTime
+(10, 'u333333', 'Staff', 1, '11:30:00', 1); -- Finished trip with an offTime
 
 
 CREATE TABLE BusSchedules (
