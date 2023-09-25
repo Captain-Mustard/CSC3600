@@ -150,3 +150,56 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+/* Style for the main content container */
+.container {
+  background-color: #fff; /* Background color for the main content */
+  padding: 20px; /* Add some padding to the main content */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+  border-radius: 5px; /* Add rounded corners */
+  width: 80%; /* Adjust the width as needed */
+  max-width: 1200px; /* Set a maximum width for larger screens */
+  margin: 20px auto; /* Center the container horizontally on the page */
+}
+
+/* Style for headings within the main content */
+.container h1 {
+  font-size: 2rem; /* Adjust the font size for the page title */
+  text-align: center; /* Center the page title */
+  margin-bottom: 20px; /* Add spacing below the title */
+}
+
+/* Style for the table */
+.container table {
+  width: 100%; /* Make the table expand to the width of the container */
+  border-collapse: collapse; /* Collapse table borders */
+}
+
+/* Style for table headers */
+.container th {
+  background-color: #003366; /* Header background color */
+  color: #fff; /* Header text color */
+  padding: 10px; /* Add padding to headers */
+  text-align: left; /* Align header text to the left */
+}
+
+/* Style for table cells */
+.container td {
+  padding: 8px; /* Add padding to table cells */
+  text-align: left; /* Align cell text to the left */
+}
+
+/* Style for the logout button */
+.container input[type="submit"] {
+  background-color: #003366; /* Button background color */
+  color: #fff; /* Button text color */
+  border: none; /* Remove button border */
+  padding: 10px 20px; /* Add padding to the button */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  margin-top: 20px; /* Add spacing above the button */
+}
+
+/* Style for the logout button on hover */
+.container input[type="submit"]:hover {
+  background-color: #002855; /* Slightly darker blue on hover */
+}
