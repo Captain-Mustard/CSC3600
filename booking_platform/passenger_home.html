@@ -2,49 +2,54 @@
 <html>
     <head>
         <title>UniSQ Shuttle Services - Passenger Home</title>
+        <link rel="stylesheet" href="../main.css">
     </head>
     <body>
-        <h1>Your Bookings</h1>
-        <button type="button" onclick="document.location='new_booking.html'">New Booking</button>
+        <div>
+            <h1>Your Bookings</h1>
+            <br/>
+            <button type="button" onclick="document.location='new_booking.html'">New Booking</button>
+        </div>
         <br/>
-        <br/>
-        <script>var bookingTable = document.createElement("TABLE")</script>
-        <table border="10">
-            <tr>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Bus No.</th>
-                <th>Start</th>
-                <th>Destination</th>
-                <th></th>
-            </tr>
-            <tr>
-                <td>12/09/2023</td>
-                <td>1400</td>
-                <td>B2</td>
-                <td>Toowoomba</td>
-                <td>Springfield</td>
-                <td><button onclick="document.getElementById('bookingTable').deleteRow(1)">Cancel Booking</button></td>
-            </tr>
-            <tr>
-                <td>30/09/2023</td>
-                <td>0935</td>
-                <td>B1</td>
-                <td>Ipswich</td>
-                <td>Plainland</td>
-                <td><button>Cancel Booking</button></td>
-            </tr>
-            <tr>
-                <td>30/10/2023</td>
-                <td>1545</td>
-                <td>B1</td>
-                <td>Springfield Central</td>
-                <td>Toowoomba</td>
-                <td><button>Cancel Booking</button></td>
-            </tr>
-            
+        <div>
+            <script>var bookingTable = document.createElement("TABLE")</script>
+            <table border="10">
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Bus No.</th>
+                    <th>Start</th>
+                    <th>Destination</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>12/09/2023</td>
+                    <td>1400</td>
+                    <td>B2</td>
+                    <td>Toowoomba</td>
+                    <td>Springfield</td>
+                    <td><button onclick="document.getElementById('bookingTable').deleteRow(1)">Cancel Booking</button></td>
+                </tr>
+                <tr>
+                    <td>30/09/2023</td>
+                    <td>0935</td>
+                    <td>B1</td>
+                    <td>Ipswich</td>
+                    <td>Plainland</td>
+                    <td><button>Cancel Booking</button></td>
+                </tr>
+                <tr>
+                    <td>30/10/2023</td>
+                    <td>1545</td>
+                    <td>B1</td>
+                    <td>Springfield Central</td>
+                    <td>Toowoomba</td>
+                    <td><button>Cancel Booking</button></td>
+                </tr>
+                
 
-        </table>
+            </table>
+        </div>
         <br/>
             <div>
                 [Placeholder for Acknowledgement and Copyright]
