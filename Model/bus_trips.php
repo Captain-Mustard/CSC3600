@@ -27,6 +27,18 @@ function get_toowoomba_timetable(){
 	
 }
 
+function getBusTripsByUserId($db, $user_id) {
+    $sql = "SELECT BusTrips.tripId, BusSchedules.tripDay, BusSchedules.busNumber, BusSchedules.busDate, BusSchedules.busTime, BusSchedules.startLocation, BusSchedules.stopLocation
+            FROM BusTrips
+            INNER JOIN BusSchedules ON BusTrips.scheduleId = BusSchedules.scheduleId
+            WHERE BusTrips.unisqId = :user_id";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_STR);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
 
 
 # will have to figure out a way to get every possible trip date in here, i.e a script that is ran that auto adds or manual data entry
