@@ -38,7 +38,38 @@ function getBusTripsByUserId($db, $user_id) {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+# Delete User Bus Trip
+function deleteBusTrip($db, $user_id, $trip_id) {
+    $sql = "DELETE FROM BusTrips
+            WHERE tripId = :trip_id AND unisqId = :user_id";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':trip_id', $trip_id, PDO::PARAM_INT);
+    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_STR);
+    return $stmt->execute();
+}
 
+// NOT WORKING Function to insert a new bus trip
+function insertNewBusTrip($trip_day, $bus_number, $bus_date, $bus_time, $start_location, $stop_location) {
+    global $db;
+    try {
+        $db->beginTransaction();
+        $query = 'INSERT INTO BusSchedules (tripDay, busNumber, busDate, busTime, startLocation, stopLocation)
+                  VALUES (:trip_day, :bus_number, :bus_date, :bus_time, :start_location, :stop_location)';
+        $statement = $db->prepare($query);
+        $statement->bindValue(':trip_day', $trip_day, PDO::PARAM_STR);
+        $statement->bindValue(':bus_number', $bus_number, PDO::PARAM_STR);
+        $statement->bindValue(':bus_date', $bus_date, PDO::PARAM_STR);
+        $statement->bindValue(':bus_time', $bus_time, PDO::PARAM_STR);
+        $statement->bindValue(':start_location', $start_location, PDO::PARAM_STR);
+        $statement->bindValue(':stop_location', $stop_location, PDO::PARAM_STR);
+        $statement->execute();
+        $db->commit();
+        return true; // Success
+    } catch (PDOException $e) {
+        // If an error occurs, rollback the transaction and return false
+        $db->rollBack();
+        return false;
+    }
 
 
 # function to get bus schedule by date, day, and time
