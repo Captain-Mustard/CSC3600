@@ -54,7 +54,7 @@ function update_trip_booking($trip_id, $uni_id, $off_time, $finished) {
 # youll have to check if a busSchedule for the day and date exist and insert one if it doesnt!
 # scheduleId from this goes into the above table for the day
 function insert_bus_schedule($schedule_id, $trip_day, $bus_number, $bus_date,
-							 $bus_time, $start_location $stop_location){
+							 $bus_time, $start_location, $stop_location){
 	global $db;
     $query = 'INSERT INTO BusSchedules
                  ( scheduleId, tripDay, busNumber, busDate,

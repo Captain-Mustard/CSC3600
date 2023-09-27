@@ -150,3 +150,164 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+/* Style for the main content container */
+.container {
+  background-color: #fff; /* Background color for the main content */
+  padding: 20px; /* Add some padding to the main content */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+  border-radius: 5px; /* Add rounded corners */
+  width: 80%; /* Adjust the width as needed */
+  max-width: 1200px; /* Set a maximum width for larger screens */
+  margin: 20px auto; /* Center the container horizontally on the page */
+}
+
+/* Style for headings within the main content */
+.container h1 {
+  font-size: 2rem; /* Adjust the font size for the page title */
+  text-align: center; /* Center the page title */
+  margin-bottom: 20px; /* Add spacing below the title */
+}
+
+/* Style for the table */
+.container table {
+  width: 100%; /* Make the table expand to the width of the container */
+  border-collapse: collapse; /* Collapse table borders */
+}
+
+/* Style for table headers */
+.container th {
+  background-color: #003366; /* Header background color */
+  color: #fff; /* Header text color */
+  padding: 10px; /* Add padding to headers */
+  text-align: left; /* Align header text to the left */
+}
+
+/* Style for table cells */
+.container td {
+  padding: 8px; /* Add padding to table cells */
+  text-align: left; /* Align cell text to the left */
+}
+
+/* Style for the logout button */
+.container input[type="submit"] {
+  background-color: #003366; /* Button background color */
+  color: #fff; /* Button text color */
+  border: none; /* Remove button border */
+  padding: 10px 20px; /* Add padding to the button */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  margin-top: 20px; /* Add spacing above the button */
+}
+
+/* Style for the logout button on hover */
+.container input[type="submit"]:hover {
+  background-color: #002855; /* Slightly darker blue on hover */
+}
+
+
+
+
+
+/* Style for the heading "User Login" */
+main h2 {
+  text-align: center; /* Center-align the heading */
+  font-size: 2rem; /* Adjust the font size for the heading */
+  margin: 20px 0; /* Add spacing above and below the heading */
+}
+
+/* Style for the login form containers */
+main .form-container {
+  text-align: center; /* Center-align the form within the container */
+  margin: 20px auto; /* Center the form horizontally and add spacing around it */
+  max-width: 400px; /* Limit the form width */
+}
+
+/* Style for the input fields in the login form */
+main .form-container input[type="text"],
+main .form-container input[type="password"] {
+  width: 100%; /* Make input fields expand to the width of the container */
+  margin-bottom: 10px; /* Add spacing between input fields */
+  padding: 10px; /* Add padding to input fields */
+  border: 1px solid #ccc; /* Add a border to input fields */
+}
+
+/* Style for the login button and "Create New User" button */
+main .form-container .submit-button {
+  background-color: #003366; /* Button background color */
+  color: #fff; /* Button text color */
+  border: none; /* Remove button border */
+  padding: 10px 20px; /* Add padding to the button */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  margin-top: 20px; /* Add spacing above the button */
+  display: block; /* Make the buttons block-level to stack them vertically */
+  margin: 0 auto; /* Center the buttons horizontally */
+}
+
+/* Style for the login button and "Create New User" button on hover */
+main .form-container .submit-button:hover {
+  background-color: #002855; /* Slightly darker blue on hover */
+}
+
+.error-message {
+  color: red;
+  font-size: 14px; /* Optionally, adjust the font size */
+}
+
+/* Style for labels */
+.form-group label {
+  display: block;
+  font-weight: bold;
+}
+
+/* Style for input fields and select box */
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group select {
+  width: 100%; /* Make input fields and select box take up full width */
+  padding: 8px;
+}
+
+/* Add this CSS code to style the create_user.php page */
+
+/* Style for the user-form container */
+.user-form {
+  text-align: left; /* Align form elements to the left */
+  width: 100%; /* Make the form span the entire width of the container */
+  max-width: 400px; /* Set a maximum width for larger screens */
+  margin: 0 auto; /* Center the form horizontally on the page */
+}
+
+.input-field {
+  width: 100%; /* Make input fields and select box span the entire width of the form */
+  padding: 10px; /* Add padding to input fields and select */
+  margin-bottom: 15px; /* Add spacing below input fields and select */
+  border: 1px solid #ccc; /* Add a border to input fields and select */
+  border-radius: 5px; /* Add rounded corners */
+}
+
+.select-field {
+  width: 100%; /* Make select box span the entire width of the form */
+  padding: 10px; /* Add padding to select */
+  margin-bottom: 15px; /* Add spacing below select */
+  border: 1px solid #ccc; /* Add a border to select */
+  border-radius: 5px; /* Add rounded corners */
+}
+
+.error-message {
+  color: red; /* Set error message text color to red */
+  font-size: 0.875rem; /* Adjust error message font size */
+}
+
+.submit-button {
+  background-color: #003366; /* Button background color */
+  color: #fff; /* Button text color */
+  border: none; /* Remove button border */
+  padding: 10px 20px; /* Add padding to the button */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.submit-button:hover {
+  background-color: #002855; /* Slightly darker blue on hover */
+}
+
+
