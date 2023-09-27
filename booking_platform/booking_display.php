@@ -3,19 +3,20 @@ include '../view/header.php';
 require('../model/database.php');
 require('../model/bus_trips.php'); // Include the bus_trips.php file
 
+//session_start();
+
 // Check if the user is logged in and retrieve the user ID
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     $user_id = $_SESSION['userid']; // User ID
 } else {
     // Redirect to the login page if the user is not logged in
-    header('Location: login.php');
+    header('Location: login1.php');
     exit();
 }
 
 // Fetch the user's bus trips using the new function from bus_trips.php
 $bus_trips = getBusTripsByUserId($db, $user_id);
 ?>
-
 
 <html>
 <head>
@@ -26,7 +27,7 @@ $bus_trips = getBusTripsByUserId($db, $user_id);
 <body>
     <!-- Apply the "container" class to the main content container -->
     <div class="container">
-	<h1>Your Bus Trips</h1>
+        <h1>Your Bus Trips</h1>
         
         <!-- Add a welcome message -->
         <p>Welcome <?php echo $user_id; ?>, here are your upcoming shuttle bus bookings.</p>
@@ -61,17 +62,19 @@ $bus_trips = getBusTripsByUserId($db, $user_id);
                 </tr>
             <?php endforeach; ?>
         </table>
+
+        <form action="booking_add.php" method="post">
+            <input type="hidden" name="action" value="book_new">
+            <input class="submit-button" type="submit" value="Book New Bus">
+        </form>
         
-        <form>
+        <form action="logout.php" method="post">
             <input type="hidden" name="action" value="log_out">
-            <!-- Apply the "submit-button" class to the logout button -->
             <input class="submit-button" type="submit" value="Logout">
         </form>
+
     </div>
 </body>
 </html>
 
 <?php include '../view/footer.php'; ?>
-
-
-
