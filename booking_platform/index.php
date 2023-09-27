@@ -38,4 +38,3 @@ if ($action == 'booking_display') {
     session_destroy();
     header('Location: ../customer_login/');
 }
-?>
