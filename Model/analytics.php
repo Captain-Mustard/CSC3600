@@ -20,7 +20,7 @@ function get_next_week_bookings_by_routes($destination) {
 }
 
 //gets the bookings by route for the next 30 days
-function get_next_week_bookings_by_routes($destination) {
+function get_next_month_bookings_by_routes($destination) {
     global $db;
     $query = '
         SELECT b.scheduleId, s.tripDay, s.busNumber, s.busDate,  s.busTime,  s.startLocation, s.stopLocation, COUNT(b.tripId) as numberOfBookings
@@ -59,7 +59,7 @@ function get_next_week_bookings_by_day($day) {
 }
 
 //gets next months booking by day
-function get_next_week_bookings_by_day($day) {
+function get_next_month_bookings_by_day($day) {
     global $db;
     $query = '
         SELECT b.scheduleId, s.tripDay, s.busNumber, s.busDate,  s.busTime,  s.startLocation, s.stopLocation, COUNT(b.tripId) as numberOfBookings
