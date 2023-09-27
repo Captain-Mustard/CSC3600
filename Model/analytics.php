@@ -19,6 +19,25 @@ function get_next_week_bookings_by_routes($destination) {
     return $next_week_bookings;
 }
 
+//gets the bookings by route for the next 30 days
+function get_next_week_bookings_by_routes($destination) {
+    global $db;
+    $query = '
+        SELECT b.scheduleId, s.tripDay, s.busNumber, s.busDate,  s.busTime,  s.startLocation, s.stopLocation, COUNT(b.tripId) as numberOfBookings
+        FROM BusTrips AS b
+        INNER JOIN BusSchedules AS s ON b.scheduleId = s.scheduleId
+        WHERE s.busDate BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 30 DAY) AND s.startLocation = :destination 
+        GROUP BY b.scheduleId, s.tripDay, s.busNumber, s.busDate, s.startLocation, s.stopLocation
+        ORDER BY s.busDate ASC';  
+
+    $statement = $db->prepare($query);
+    $statement->bindValue(':destination', $destination);
+    $statement->execute();
+    $next_week_bookings = $statement->fetchAll();
+    $statement->closeCursor();
+    return $next_week_bookings;
+}
+
 
 //gets next weeks booking by day
 function get_next_week_bookings_by_day($day) {
@@ -39,8 +58,24 @@ function get_next_week_bookings_by_day($day) {
     return $next_week_bookings;
 }
 
+//gets next months booking by day
+function get_next_week_bookings_by_day($day) {
+    global $db;
+    $query = '
+        SELECT b.scheduleId, s.tripDay, s.busNumber, s.busDate,  s.busTime,  s.startLocation, s.stopLocation, COUNT(b.tripId) as numberOfBookings
+        FROM BusTrips AS b
+        INNER JOIN BusSchedules AS s ON b.scheduleId = s.scheduleId
+        WHERE s.busDate BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 30 DAY) AND s.tripDay = :day 
+        GROUP BY b.scheduleId, s.tripDay, s.busNumber, s.busDate, s.startLocation, s.stopLocation
+        ORDER BY s.busDate ASC';  
 
-
+    $statement = $db->prepare($query);
+    $statement->bindValue(':day', $day);
+    $statement->execute();
+    $next_week_bookings = $statement->fetchAll();
+    $statement->closeCursor();
+    return $next_week_bookings;
+}
 
 
 //gets previous 7 days per routes
