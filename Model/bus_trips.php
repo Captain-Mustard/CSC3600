@@ -41,8 +41,36 @@ function getBusTripsByUserId($db, $user_id) {
 
 
 
-# will have to figure out a way to get every possible trip date in here, i.e a script that is ran that auto adds or manual data entry
-# or the opposite like a table of days when the buses dont run i.e christmas dates and cross check that list.
+# function to get bus schedule by date, day, and time
+function get_bus_schedule($date, $day, $time){
+	global $db;
+    $query = 'SELECT * FROM  BusSchedules
+			  WHERE busDate = :date AND tripDay = :day AND busTime = :time
+			  ORDER BY busTime';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':date', $date);
+	$statement->bindValue(':day', $day);
+	$statement->bindValue(':time', $time);
+	$statement->execute();
+    $bus_schedule = $statement->fetchAll();
+    $statement->closeCursor();
+    return $bus_schedule;
+}
 
+
+# function to get bus schedule id
+
+function get_bus_schedule($id){
+	global $db;
+    $query = 'SELECT * FROM  BusSchedules
+			  WHERE scheduleId = :id 
+			  ORDER BY busTime';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':id', $id);
+	$statement->execute();
+    $bus_schedule = $statement->fetchAll();
+    $statement->closeCursor();
+    return $bus_schedule;
+}
 
 ?>
