@@ -2,7 +2,7 @@
 require('../model/database.php');
 session_start();
 
-// checks current session, if its analytics will skip login, if its a different user type, it will destroy the session and make the user sign in
+// checks current session, if it's analytics will skip login, if its a different user type, it will destroy the session and make the user sign in
 $action = filter_input(INPUT_POST, 'action');
 if ($action === NULL) {
     $action = filter_input(INPUT_GET, 'action');
