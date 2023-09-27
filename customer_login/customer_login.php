@@ -13,6 +13,11 @@
             // Clear the success message from the session to prevent it from displaying again on refresh
             unset($_SESSION['success_message']);
         }
+
+        // Check if an error message is set
+        if (isset($error)) {
+            echo '<div class="error-message">' . htmlspecialchars($error) . '</div>';
+        }
         ?>
 
         <!-- Display a search form -->
