@@ -1,8 +1,9 @@
 <?php
-require('../model/database.php');
-require('../model/login_user.php');
 
 session_start();
+
+require('../model/database.php');
+require('../model/login_user.php');
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action === NULL) {
@@ -52,7 +53,7 @@ if ($action == 'login_user') {
             include('customer_login.php'); // Display the error message on the login page
         }
     } else {
-        $error = 'Please enter a valid username and password';
+        $error = 'The Username Does Not Exist, Please Try Again or Create New User';
         include('customer_login.php'); // Display the error message on the login page
     }
 } elseif ($action == 'create_user') {
