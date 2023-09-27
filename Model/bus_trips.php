@@ -10,8 +10,6 @@ function get_springfield_timetable(){
     $toowoomba_bus = $statement->fetchAll();
     $statement->closeCursor();
     return $toowoomba_bus;
-	
-	
 }
 
 function get_toowoomba_timetable(){
@@ -23,8 +21,6 @@ function get_toowoomba_timetable(){
     $springfield_bus = $statement->fetchAll();
     $statement->closeCursor();
     return $springfield_bus;
-	
-	
 }
 
 function getBusTripsByUserId($db, $user_id) {
@@ -70,14 +66,14 @@ function insertNewBusTrip($trip_day, $bus_number, $bus_date, $bus_time, $start_l
         $db->rollBack();
         return false;
     }
-
+}
 
 # function to get bus schedule by date, day, and time
 function get_bus_schedule($date, $day, $time){
 	global $db;
     $query = 'SELECT * FROM  BusSchedules
-			  WHERE busDate = :date AND tripDay = :day AND busTime = :time
-			  ORDER BY busTime';
+              WHERE busDate = :date AND tripDay = :day AND busTime = :time
+              ORDER BY busTime';
     $statement = $db->prepare($query);
     $statement->bindValue(':date', $date);
 	$statement->bindValue(':day', $day);
@@ -88,14 +84,12 @@ function get_bus_schedule($date, $day, $time){
     return $bus_schedule;
 }
 
-
-# function to get bus schedule id
-
-function get_bus_schedule($id){
+# function to get bus schedule by ID
+function get_bus_schedule_by_id($id){
 	global $db;
     $query = 'SELECT * FROM  BusSchedules
-			  WHERE scheduleId = :id 
-			  ORDER BY busTime';
+              WHERE scheduleId = :id 
+              ORDER BY busTime';
     $statement = $db->prepare($query);
     $statement->bindValue(':id', $id);
 	$statement->execute();
