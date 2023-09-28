@@ -17,7 +17,6 @@
             <td><?php echo htmlspecialchars($passenger_off['unisqId']); ?></td>
             <td><?php echo htmlspecialchars($passenger_off['offTime']); ?></td>
 			<td><?php echo htmlspecialchars($passenger_off['finished']); ?></td>
-            </form></td>
         </tr>
         <?php endforeach; ?>
     </table>
