@@ -47,7 +47,7 @@ else if($action == 'list_busses') {
 
 /*
 	$date = filter_input(INPUT_POST,'day');
-	$day_int = $date.getDay();
+	$day_int = date('D', strtotime($date));
 
 	$days = array("0"=>"Sunday","1"=>"Monday","2"=>"Tuesday",
 	"3"=>"Wednesday","4"=>"Thursday","5"=>"Friday","6"=>"Saturday");

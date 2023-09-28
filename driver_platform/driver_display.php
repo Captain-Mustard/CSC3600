@@ -22,7 +22,7 @@
 
     <form>
 
-		  <input type="hidden" name="action" value="log_out">
+		  <br><input type="hidden" name="action" value="log_out">
                 
 			<input type="submit" value="Logout">
 	

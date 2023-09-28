@@ -31,7 +31,7 @@ function get_bus_schedule($date, $day, $time, $destination){
 	$statement->bindValue(':destination', $destination);
 	$statement->bindValue(':time', $time);
 	$statement->execute();
-    $bus_trip_day = $statement->fetch();
+    $bus_trip_day = $statement->fetchAll();
     $statement->closeCursor();
     return $bus_trip_day;
 	
