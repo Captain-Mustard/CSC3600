@@ -37,6 +37,11 @@ function print_next_week_bookings_by_day($day) {
     }
 
     echo "</table>";
+
+    #Only prints passengerCount if Analytics viewed by day.
+    if (isset($passengerCount)){
+        echo "Passenger Count: ".htmlspecialchars($passengerCount);
+    }
 }
 
 print_next_week_bookings_by_day('Monday');
