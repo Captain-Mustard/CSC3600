@@ -17,6 +17,7 @@
         </select>
 
         <br />
+
         <label for="destination">End:</label>
         <select id="destination" name="destination">
             <option value="Toowoomba">Toowoomba</option>
@@ -25,12 +26,6 @@
             <option value="Ipswich">Ipswich</option>
             <option value="Plainland">Plainland</option>
         </select>
-
-
-        <!--<select> #Can do a JS for loop to print same drop-down twice instead of repeating above.
-            <script>document.write </script>
-        
-        </select>-->
 
         <br /> </br />
         <label for="day">Day:</label>
@@ -50,6 +45,9 @@
 
         <input type="hidden" name="action" value="past_30_days">
         <input type="submit" value="Past 30 Days">
+
+        <input type="hidden" name="action" value="next_30_days">
+        <input type="submit" value="Next 30 Days">
     </form>
 <br/>
 	 <form>
@@ -58,5 +56,7 @@
 			<input type="submit" value="Logout">
 	
 	</form>
+
+    
 </main>
 <?php include '../view/footer.php'; ?>
