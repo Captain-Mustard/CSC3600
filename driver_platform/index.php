@@ -44,7 +44,20 @@ else if($action == 'list_busses') {
 	$destination = filter_input(INPUT_POST, 'destination');
 	$date = '2023-09-10';
 	$day = 'Monday';
-	
+
+/*
+	$date = filter_input(INPUT_POST,'day');
+	$day_int = date.getDay();
+
+	$days = array("0"=>"Sunday","1"=>"Monday","2"=>"Tuesday",
+	"3"=>"Wednesday","4"=>"Thursday","5"=>"Friday","6"=>"Saturday");
+
+	foreach ($days as $day_int => $day_str){
+		$day = $day_str;  
+	}
+*/
+
+
 	$trips = get_days_trips($day, $destination);
 	
 	include('list_busses.php');
@@ -62,27 +75,33 @@ else if($action == 'get_passengers'){
 	
 	$get_bus_schedule = get_bus_schedule($date, $day, $bus_time, $destination);
 	
-	#Commented out whilst testing (using 10/09/2023 for testing).
-	#if(isset($get_bus_schedule['scheduleId']) == false){
+	
+	if(isset($get_bus_schedule['scheduleId']) == false){
 		
+		
+		/*
 		// take driver to a booking page 
-		#include('../booking_platform/home_page.php');
+		include('../booking_platform/new_booking.html');
 
 		$bus_schedule = $get_bus_schedule['scheduleId'];
 		$passengers_on_trips = get_passengers_by_schedule_ID($bus_schedule);
-
 		include('list_passengers.php');
+		*/
 
-	#}
+		include('no_passengers_found.php');
+
+		
+
+	}
 	
-	#commented out whilst testing.
-	#else{
-		#$bus_schedule = $get_bus_schedule['scheduleId'];
-		#$passengers_on_trips = get_passengers_by_schedule_ID($bus_schedule);
-		#include('list_passengers.php');
+
+	else{
+		$bus_schedule = $get_bus_schedule['scheduleId'];
+		$passengers_on_trips = get_passengers_by_schedule_ID($bus_schedule);
+		include('list_passengers.php');
 	}
 
-
+}
 else if ($action == 'passenger_marked_off'){
 
 	$off_time = filter_input(INPUT_POST, 'off_time');
