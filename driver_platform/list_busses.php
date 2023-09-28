@@ -8,6 +8,7 @@
 			<th>Ipswich: </th>
 			<th>Plainland: </th>
 			<th>Toowoomba: </th>
+            <th>Passengers: </th>
             <th>&nbsp;</th>
         </tr>
         <?php foreach ($trips as $trip) : ?>
