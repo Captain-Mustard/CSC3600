@@ -47,3 +47,15 @@ function print_next_week_bookings_by_day($day) {
 print_next_week_bookings_by_day('Monday');
 
 ?>
+
+<main>
+  <h1>Logout</h1>
+	 <form>
+		
+		  <input type="hidden" name="action" value="log_out">
+			<input type="submit" value="Logout">
+	
+	</form>
+
+    
+</main>
