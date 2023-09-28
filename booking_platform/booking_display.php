@@ -3,7 +3,9 @@ include '../view/header.php';
 require('../model/database.php');
 require('../model/bus_trips.php'); // Include the bus_trips.php file
 
-session_start();  //Line causes session_start(): Ignoring session_start() error, remove button does not work without
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Check if the user is logged in and retrieve the user ID
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
