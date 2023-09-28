@@ -11,15 +11,20 @@ if ($action === NULL) {
     if ($action === NULL) {
         // Check if the user is already logged in
         if (isset($_SESSION['loggedin'])) {
-            // Redirect based on user type
-            if (isset($_SESSION['user_type']) && $_SESSION['user_type'] == "customer") {
-                $action = 'booking_display';
-            } elseif (isset($_SESSION['user_type']) && $_SESSION['user_type'] != "customer") {
-                if ($_SESSION['user_type'] == "driver") {
+            // Use a switch statement to determine the action based on user type
+            switch ($_SESSION['user_type']) {
+                case "customer":
+                    $action = 'booking_display';
+                    break;
+                case "driver":
                     header('Location: ../driver_login/');
-                } elseif ($_SESSION['user_type'] == "analytics") {
+                    exit;
+                case "analytics":
                     header('Location: ../analytics_login/');
-                }
+                    exit;
+                default:
+                    // Handle any other cases if necessary
+                    break;
             }
         } else {
             // Redirect to customer login if not logged in
