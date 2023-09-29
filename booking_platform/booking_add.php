@@ -1,106 +1,48 @@
 <?php
-session_start();
+include '../view/header.php';
 require('../model/database.php');
-
-// Initialize variables for form data and errors
-$trip_day = $bus_number = $bus_date = $bus_time = $start_location = $stop_location = '';
-$errors = [];
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Validate and capture form inputs
-    $trip_day = $_POST['trip_day'];
-    $bus_number = $_POST['bus_number'];
-    $bus_date = $_POST['bus_date'];
-    $bus_time = $_POST['bus_time'];
-    $start_location = $_POST['start_location'];
-    $stop_location = $_POST['stop_location'];
-
-    // Perform form validation
-    if (empty($trip_day)) {
-        $errors[] = 'Trip day is required.';
-    }
-    // Add more validation rules as needed
-
-    // If there are no validation errors, proceed with database insertion
-    if (empty($errors)) {
-        // Call the function to insert the new trip
-        // Replace this with the actual function call
-        insertNewBusTrip($trip_day, $bus_number, $bus_date, $bus_time, $start_location, $stop_location);
-
-        // Redirect to booking_display.php after successful insertion
-        header('Location: booking_display.php');
-        exit();
-    }
-}
-
+session_start();
 ?>
 
 <html>
 <head>
-    <title>Book a New Bus Trip</title>
-    <!-- Include any necessary CSS styles here -->
+    <title>Bus Booking</title>
 </head>
 <body>
-    <h1>Book a New Bus Trip</h1>
-    
-    <!-- Display validation errors, if any -->
-    <?php if (!empty($errors)): ?>
-        <ul>
-            <?php foreach ($errors as $error): ?>
-                <li><?php echo $error; ?></li>
-            <?php endforeach; ?>
-        </ul>
-    <?php endif; ?>
-    
-    <form action="booking_add.php" method="POST">
-    <label for="bus_date">Date:</label>
-    <input type="date" name="bus_date" required>
-    <br>
-    <label for="start_location">Start Location:</label>
-    <select name="start_location" id="start_location" required>
-        <option value="Toowoomba">Toowoomba</option>
-        <option value="Springfield">Springfield</option>
-    </select>
-    <br>
-    <label for="stop_location">Stop Location:</label>
-    <select name="stop_location" id="stop_location" disabled required>
-        <option value="Springfield">Springfield</option>
-        <option value="Toowoomba">Toowoomba</option>
-    </select>
-    <br>
-    <label for="bus_time">Time:</label>
-    <select name="bus_time" id="bus_time" required>
-        <option value="0630">06:30</option>
-        <option value="0715">07:15</option>
-        <option value="0745">07:45</option>
-        <option value="0845">08:45</option>
-        <option value="1000">10:00</option>
-        <option value="1030">10:30</option>
-        <option value="1100">11:00</option>
-        <option value="1200">12:00</option>
-    </select>
-    <br>
-    <input type="submit" value="Book">
-</form>
+    <h1>Bus Booking</h1>
+    <form method="post" action="book_bus.php">
+        <label for="date">Select Date:</label>
+        <input type="date" id="date" name="date" required><br><br>
 
-    
-    <!-- Add a button to cancel and go back to booking_display.php -->
-    <a href="booking_display.php">Cancel</a>
+        <label for="departure">Select Departure Point:</label>
+        <select id="departure" name="departure" required>
+            <option value="Toowoomba">Toowoomba</option>
+            <option value="Springfield">Springfield</option>
+        </select><br><br>
+
+        <label for="startTime">Select Start Time:</label>
+        <select id="startTime" name="startTime" required>
+            <?php
+            // Define the available start times based on the selected departure point
+            $startTimes = ($_POST['departure'] == 'Toowoomba')
+                ? ['06:30', '10:00', '13:15', '16:15']
+                : ['06:45', '10:00', '13:15', '16:15'];
+
+            // Generate the options for start times
+            foreach ($startTimes as $time) {
+                echo "<option value=\"$time\">$time</option>";
+            }
+            ?>
+        </select><br><br>
+
+        <input type="submit" value="Book Trip">
+    </form>
+
+    <form action="logout.php" method="post">
+        <input type="hidden" name="action" value="log_out">
+        <input class="submit-button" type="submit" value="Logout">
+    </form>
 </body>
 </html>
 
-<script>
-document.getElementById("start_location").addEventListener("change", function() {
-    var startLocation = this.value;
-    var stopLocationSelect = document.getElementById("stop_location");
-    
-    if (startLocation === "Toowoomba") {
-        stopLocationSelect.value = "Springfield";
-    } else if (startLocation === "Springfield") {
-        stopLocationSelect.value = "Toowoomba";
-    }
-    // Enable the "Stop Location" field
-    stopLocationSelect.disabled = false;
-});
-</script>
-
+<?php include '../view/footer.php'; ?>
