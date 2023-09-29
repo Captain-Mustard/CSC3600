@@ -11,35 +11,58 @@ CREATE TABLE busTimeTable (
 	finishStop varchar(50) NOT NULL,
 	stopOneTime varchar(10) NOT NULL,
     stopTwoTime varchar(10) NOT NULL,
-	stopThreeTime varchar(10) NOT NULL,
+	stopThreeTime varchar(10) NULL,
 	stopFourTime varchar(10) NOT NULL,
 	busDay varchar(10) NOT NULL,
     PRIMARY KEY (busNo, stopOneTime, busDay)
 );
 
--- still need to add springfield 
 INSERT INTO busTimeTable VALUES 
-('B2', 'SpringField' , 'Toowoomba' ,'0630','0715','0745','0845','Monday'),
-('B1', 'SpringField' , 'Toowoomba' ,'1000','1030','1100','1200','Monday'),
-('B2', 'SpringField' , 'Toowoomba' ,'1315','1345','1415','1515','Monday'),
-('B1', 'SpringField' , 'Toowoomba' ,'1615','1645','1715','1815','Monday'),
-('B2', 'SpringField' , 'Toowoomba' ,'0630','0715','0745','0845','Tuesday'),
-('B1', 'SpringField' , 'Toowoomba' ,'1000','1030','1100','1200','Tuesday'),
-('B2', 'SpringField' , 'Toowoomba' ,'1315','1345','1415','1515','Tuesday'),
-('B1', 'SpringField' , 'Toowoomba' ,'1615','1645','1715','1815','Tuesday'),
-('B2', 'SpringField' , 'Toowoomba' ,'0630','0715','0745','0845','Wednesday'),
-('B1', 'SpringField' , 'Toowoomba' ,'1000','1030','1100','1200','Wednesday'),
-('B2', 'SpringField' , 'Toowoomba' ,'1315','1345','1415','1515','Wednesday'),
-('B1', 'SpringField' , 'Toowoomba' ,'1615','1645','1715','1815','Wednesday'),
-('B2', 'SpringField' , 'Toowoomba' ,'0630','0715','0745','0845','Thursday'),
-('B1', 'SpringField' , 'Toowoomba' ,'1000','1030','1100','1200','Thursday'),
-('B2', 'SpringField' , 'Toowoomba' ,'1315','1345','1415','1515','Thursday'),
-('B1', 'SpringField' , 'Toowoomba' ,'1615','1645','1715','1815','Thursday'),
-('B2', 'SpringField' , 'Toowoomba' ,'0630','0715','0745','0845','Friday'),
-('B1', 'SpringField' , 'Toowoomba' ,'1000','1030','1100','1200','Friday'),
-('B2', 'SpringField' , 'Toowoomba' ,'1315','1345','1415','1515','Friday'),
-('B1', 'SpringField' , 'Toowoomba' ,'1615','1645','1715','1815','Friday');
-
+-- Monday
+('B1', 'Toowoomba' , 'SpringField' ,'06:30','07:15', NULL,'08:30','Monday'),
+('B2', 'Toowoomba' , 'SpringField' ,'10:00','10:45', NULL,'12:00','Monday'),
+('B1', 'Toowoomba' , 'SpringField' ,'13:15','14:00', NULL,'15:15','Monday'),
+('B2', 'Toowoomba' , 'SpringField' ,'16:15','17:00','18:15','18:25','Monday'),
+('B2', 'SpringField' , 'Toowoomba' ,'06:45','07:15','07:45','08:45','Monday'),
+('B1', 'SpringField' , 'Toowoomba' ,'10:00','10:30','11:00','12:00','Monday'),
+('B2', 'SpringField' , 'Toowoomba' ,'13:15','13:45','14:15','15:15','Monday'),
+('B1', 'SpringField' , 'Toowoomba' ,'16:15','16:45','17:15','18:15','Monday'),
+-- Tuesday
+('B1', 'Toowoomba' , 'SpringField' ,'06:30','07:15', NULL,'08:30','Tuesday'),
+('B2', 'Toowoomba' , 'SpringField' ,'10:00','10:45', NULL,'12:00','Tuesday'),
+('B1', 'Toowoomba' , 'SpringField' ,'13:15','14:00', NULL,'15:15','Tuesday'),
+('B2', 'Toowoomba' , 'SpringField' ,'16:15','17:00','18:15','18:25','Tuesday'),
+('B2', 'SpringField' , 'Toowoomba' ,'06:45','07:15','07:45','08:45','Tuesday'),
+('B1', 'SpringField' , 'Toowoomba' ,'10:00','10:30','11:00','12:00','Tuesday'),
+('B2', 'SpringField' , 'Toowoomba' ,'13:15','13:45','14:15','15:15','Tuesday'),
+('B1', 'SpringField' , 'Toowoomba' ,'16:15','16:45','17:15','18:15','Tuesday'),
+-- Wednesday
+('B1', 'Toowoomba' , 'SpringField' ,'06:30','07:15', NULL,'08:30','Wednesday'),
+('B2', 'Toowoomba' , 'SpringField' ,'10:00','10:45', NULL,'12:00','Wednesday'),
+('B1', 'Toowoomba' , 'SpringField' ,'13:15','14:00', NULL,'15:15','Wednesday'),
+('B2', 'Toowoomba' , 'SpringField' ,'16:15','17:00','18:15','18:25','Wednesday'),
+('B2', 'SpringField' , 'Toowoomba' ,'06:45','07:15','07:45','08:45','Wednesday'),
+('B1', 'SpringField' , 'Toowoomba' ,'10:00','10:30','11:00','12:00','Wednesday'),
+('B2', 'SpringField' , 'Toowoomba' ,'13:15','13:45','14:15','15:15','Wednesday'),
+('B1', 'SpringField' , 'Toowoomba' ,'16:15','16:45','17:15','18:15','Wednesday'),
+-- Thursday
+('B1', 'Toowoomba' , 'SpringField' ,'06:30','07:15', NULL,'08:30','Thursday'),
+('B2', 'Toowoomba' , 'SpringField' ,'10:00','10:45', NULL,'12:00','Thursday'),
+('B1', 'Toowoomba' , 'SpringField' ,'13:15','14:00', NULL,'15:15','Thursday'),
+('B2', 'Toowoomba' , 'SpringField' ,'16:15','17:00','18:15','18:25','Thursday'),
+('B2', 'SpringField' , 'Toowoomba' ,'06:45','07:15','07:45','08:45','Thursday'),
+('B1', 'SpringField' , 'Toowoomba' ,'10:00','10:30','11:00','12:00','Thursday'),
+('B2', 'SpringField' , 'Toowoomba' ,'13:15','13:45','14:15','15:15','Thursday'),
+('B1', 'SpringField' , 'Toowoomba' ,'16:15','16:45','17:15','18:15','Thursday'),
+-- Friday
+('B1', 'Toowoomba' , 'SpringField' ,'06:30','07:15', NULL,'08:30','Friday'),
+('B2', 'Toowoomba' , 'SpringField' ,'10:00','10:45', NULL,'12:00','Friday'),
+('B1', 'Toowoomba' , 'SpringField' ,'13:15','14:00', NULL,'15:15','Friday'),
+('B2', 'Toowoomba' , 'SpringField' ,'16:15','17:00','18:15','18:25','Friday'),
+('B2', 'SpringField' , 'Toowoomba' ,'06:45','07:15','07:45','08:45','Friday'),
+('B1', 'SpringField' , 'Toowoomba' ,'10:00','10:30','11:00','12:00','Friday'),
+('B2', 'SpringField' , 'Toowoomba' ,'13:15','13:45','14:15','15:15','Friday'),
+('B1', 'SpringField' , 'Toowoomba' ,'16:15','16:45','17:15','18:15','Friday');
 
 
 CREATE TABLE Passengers (
@@ -115,9 +138,9 @@ CREATE TABLE BusSchedules (
 );
 
 INSERT INTO BusSchedules VALUES -- fake data
-(1, 'Monday', 'B1', '2023-09-10', '1000', 'Springfield', 'Toowoomba'),
+(1, 'Monday', 'B1', '2023-09-10', '10:00', 'Springfield', 'Toowoomba'),
 (2, 'Tuesday', 'B2', '2023-09-10', '0630', 'Springfield', 'Toowoomba'),
-(3, 'Tuesday', 'B1', '2023-09-10', '1000', 'Springfield', 'Toowoomba');
+(3, 'Tuesday', 'B1', '2023-09-10', '10:00', 'Springfield', 'Toowoomba');
 
 
 
