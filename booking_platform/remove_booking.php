@@ -9,8 +9,8 @@ require('../model/bus_trips.php');
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     $user_id = $_SESSION['userid']; // User ID
 } else {
-    // Redirect to the login page if the user is not logged in
-    header('Location: login.php');
+    // Redirect to customer login if not logged in
+    header('Location: ../customer_login/');
     exit();
 }
 
