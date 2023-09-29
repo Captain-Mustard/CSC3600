@@ -72,6 +72,11 @@ session_start();
             disableWeekends();
             toggleStartTimeVisibility();
         };
+
+        // Function to go back to the previous page
+        function goBack() {
+            window.history.back();
+        }
     </script>
 </head>
 <body>
@@ -102,6 +107,7 @@ session_start();
                 </div>
 
                 <input type="submit" class="submit-button" value="Book Trip">
+                <button type="button" onclick="goBack()" class="submit-button">Back</button>
             </form>
         </div>
     </main>
