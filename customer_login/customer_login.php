@@ -2,7 +2,7 @@
 
 <main>
     <div class="container">
-        <h2>User Login</h2>
+        <h2>Rider Login</h2>
 
         <?php
         // Check if a success message is set in the session
