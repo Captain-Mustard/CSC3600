@@ -83,6 +83,20 @@ function mark_off_passenger($off_time, $finished, $trip_id, $uni_id) {
     return $marked_off;
 }
 
+#making 'scheduleId' accessible to get when passengers are listed. 
+function get_schedule_ID_by_BusNo($busNo){
+    global $db;
+    $query = 'SELECT * FROM BusSchedules
+            WHERE busNumber = :busNo
+            ORDER BY BusNumber';
+
+    $statement = $db->prepare($query);
+    $statement->bindValue(':busNo',$busNo);
+    $statement->execute();
+    $id_by_BusNo = $statement->fetchAll();
+    $statement->closeCursor();
+    return $id_by_BusNo;
+}
 
 
 ?>
