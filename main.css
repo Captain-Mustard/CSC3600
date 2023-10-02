@@ -354,3 +354,15 @@ main .form-container .submit-button:hover {
 .section-links a:hover {
   text-decoration: underline;
 }
+
+/*Analytics boxes:*/
+.box-analytics-container {
+    display: flex;
+}
+
+.box-analytics-child {
+    width: 50%;
+    float: left;
+    border: 20px solid #002855;
+    padding: 2px;
+}
