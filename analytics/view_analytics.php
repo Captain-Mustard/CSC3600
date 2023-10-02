@@ -1,16 +1,20 @@
-<?php
+<?php include '../view/header.php'; ?>
+<?php 
 require('../model/database.php');
-include('../model/analytics.php');
+include('../model/analytics.php');?>
+<link rel="stylesheet" type="text/css" href="../main.css">
 
-
+<?php
 function print_next_week_bookings_by_day($day) {
     $bookings = get_last_month_bookings_by_day($day);
+    
     
     if (empty($bookings)) {
         echo "No bookings found for the next week on " . $day . ".";
         return;
     }
 
+?><div class="container"><?php
     echo "<table border='1'>";
     echo "<tr>";
     echo "<th>Schedule ID</th>";
@@ -44,18 +48,15 @@ function print_next_week_bookings_by_day($day) {
     }
 }
 
-print_next_week_bookings_by_day('Monday');
+#print_next_week_bookings_by_day($day);
 
-?>
+?></div>
 
 <main>
-  <h1>Logout</h1>
-	 <form>
-		
-		  <input type="hidden" name="action" value="log_out">
-			<input type="submit" value="Logout">
-	
-	</form>
-
+<form action="../booking_platform/logout.php" method="post">
+            <input type="hidden" name="action" value="log_out">
+            <input class="submit-button" type="submit" value="Logout">
+        </form>
     
 </main>
+<?php include '../view/footer.php'; ?>
