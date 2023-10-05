@@ -1,76 +1,40 @@
 <?php
 
-
-
-# shows the drivers the buses for that day for toowoomba
-function get_days_trips($day, $destination){
-	global $db;
+// Function to get the bus trips for a specific day and destination
+function get_days_trips($day, $destination) {
+    global $db;
     $query = 'SELECT * FROM busTimeTable
-			  WHERE busDay = :day AND finishStop = :destination
-			  ORDER BY stopOneTime';
+              WHERE busDay = :day AND finishStop = :destination
+              ORDER BY stopOneTime';
     $statement = $db->prepare($query);
     $statement->bindValue(':day', $day);
-	$statement->bindValue(':destination', $destination);
-	$statement->execute();
+    $statement->bindValue(':destination', $destination);
+    $statement->execute();
     $bus_trip_day = $statement->fetchAll();
     $statement->closeCursor();
     return $bus_trip_day;
 }
 
-
-# lets driver view passengers on their bus using date
-function get_bus_schedule($date, $day, $time, $destination){
-	global $db;
-    $query = 'SELECT * FROM busSchedules
-			  WHERE busDate = :date AND stopLocation = :destination AND busTime = :time AND tripDay = :day
-			  ORDER BY busDate';
-			  
-    $statement = $db->prepare($query);
-    $statement->bindValue(':date', $date);
-	$statement->bindValue(':day', $day);
-	$statement->bindValue(':destination', $destination);
-	$statement->bindValue(':time', $time);
-	$statement->execute();
-    $bus_trip_day = $statement->fetchAll();
-    $statement->closeCursor();
-    return $bus_trip_day;
-	
-	
-	
-}
-
-
-function get_passengers_by_schedule_ID($schedule_id){
-	global $db;
+// Function to get passengers by schedule ID
+function get_passengers_by_schedule_ID($schedule_id) {
+    global $db;
     $query = 'SELECT * FROM BusTrips
-			  WHERE scheduleId = :schedule_id
-			  ORDER BY scheduleId';
-			  
+              WHERE scheduleId = :schedule_id
+              ORDER BY scheduleId';
     $statement = $db->prepare($query);
     $statement->bindValue(':schedule_id', $schedule_id);
-	$statement->execute();
+    $statement->execute();
     $bus_trip_day = $statement->fetchAll();
     $statement->closeCursor();
     return $bus_trip_day;
-	
-	
 }
 
-
-# lets driver add passenger to their bus - available in user booking
-
-
-
-
-
-
-
-# lets the bus driver mark a passenger as off 
+// Function to mark a passenger as off
 function mark_off_passenger($off_time, $finished, $trip_id, $uni_id) {
     global $db;
     $query = 'UPDATE BusTrips
               SET offTime = :off_time,
-				  finished = :finished
+                  finished = :finished
               WHERE tripId = :trip_id AND unisqId = :uni_id';
     $statement = $db->prepare($query);
     $statement->bindValue(':off_time', $off_time);
@@ -83,20 +47,18 @@ function mark_off_passenger($off_time, $finished, $trip_id, $uni_id) {
     return $marked_off;
 }
 
-#making 'scheduleId' accessible to get when passengers are listed. 
-function get_schedule_ID_by_BusNo($busNo){
+// Function to get schedule ID by BusNo
+function get_schedule_ID_by_BusNo($busNo) {
     global $db;
     $query = 'SELECT * FROM BusSchedules
-            WHERE busNumber = :busNo
-            ORDER BY BusNumber';
-
+              WHERE busNumber = :busNo
+              ORDER BY BusNumber';
     $statement = $db->prepare($query);
-    $statement->bindValue(':busNo',$busNo);
+    $statement->bindValue(':busNo', $busNo);
     $statement->execute();
     $id_by_BusNo = $statement->fetchAll();
     $statement->closeCursor();
     return $id_by_BusNo;
 }
-
 
 ?>
