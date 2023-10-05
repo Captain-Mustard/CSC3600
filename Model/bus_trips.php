@@ -1,6 +1,6 @@
 <?php
 
-// Function to get the Springfield timetable for a specific day
+// Function to get the Springfield timetable
 function get_springfield_timetable() {
     global $db;
     $query = 'SELECT * FROM ToowoombaBound
@@ -12,7 +12,7 @@ function get_springfield_timetable() {
     return $toowoomba_bus;
 }
 
-// Function to get the Toowoomba timetable for a specific day
+// Function to get the Toowoomba timetable
 function get_toowoomba_timetable() {
     global $db;
     $query = 'SELECT * FROM SpringfieldBound
@@ -71,33 +71,65 @@ function insertNewBusTrip($trip_day, $bus_number, $bus_date, $bus_time, $start_l
 }
 
 // Function to get bus schedule by date, day, and time
-function get_bus_schedule($date, $day, $time) {
-    global $db;
+function get_bus_schedule($date, $day, $time){
+	global $db;
     $query = 'SELECT * FROM  BusSchedules
               WHERE busDate = :date AND tripDay = :day AND busTime = :time
               ORDER BY busTime';
     $statement = $db->prepare($query);
     $statement->bindValue(':date', $date);
-    $statement->bindValue(':day', $day);
-    $statement->bindValue(':time', $time);
-    $statement->execute();
+	$statement->bindValue(':day', $day);
+	$statement->bindValue(':time', $time);
+	$statement->execute();
     $bus_schedule = $statement->fetchAll();
     $statement->closeCursor();
     return $bus_schedule;
 }
 
 // Function to get bus schedule by ID
-function get_bus_schedule_by_id($id) {
-    global $db;
+function get_bus_schedule_by_id($id){
+	global $db;
     $query = 'SELECT * FROM  BusSchedules
               WHERE scheduleId = :id 
               ORDER BY busTime';
     $statement = $db->prepare($query);
     $statement->bindValue(':id', $id);
-    $statement->execute();
+	$statement->execute();
     $bus_schedule = $statement->fetchAll();
     $statement->closeCursor();
     return $bus_schedule;
+}
+
+// Function to get the Springfield timetable for a specific day
+function get_springfield_timetable_by_day($day){
+	global $db;
+    $query = 'SELECT * FROM busTimeTable
+              WHERE busDay = :day AND startStop = :start_stop AND finishStop = :finish_stop
+              ORDER BY stopOneTime';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':day', $day, PDO::PARAM_STR);
+    $statement->bindValue(':start_stop', 'Toowoomba', PDO::PARAM_STR);
+    $statement->bindValue(':finish_stop', 'SpringField', PDO::PARAM_STR);
+    $statement->execute();
+    $springfield_bus = $statement->fetchAll();
+    $statement->closeCursor();
+    return $springfield_bus;
+}
+
+// Function to get the Toowoomba timetable for a specific day
+function get_toowoomba_timetable_by_day($day){
+	global $db;
+    $query = 'SELECT * FROM busTimeTable
+              WHERE busDay = :day AND startStop = :start_stop AND finishStop = :finish_stop
+              ORDER BY stopOneTime';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':day', $day, PDO::PARAM_STR);
+    $statement->bindValue(':start_stop', 'SpringField', PDO::PARAM_STR);
+    $statement->bindValue(':finish_stop', 'Toowoomba', PDO::PARAM_STR);
+    $statement->execute();
+    $toowoomba_bus = $statement->fetchAll();
+    $statement->closeCursor();
+    return $toowoomba_bus;
 }
 
 ?>
