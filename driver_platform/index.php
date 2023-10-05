@@ -12,7 +12,7 @@ if ($action === NULL) {
         if (isset($_SESSION['user_type'])) {
             switch ($_SESSION['user_type']) {
                 case "driver":
-                    $action = 'driver_display';
+                    $action = 'list_busses';
                     break;
                 case "customer":
                     header('Location: ../customer_login/');
@@ -31,17 +31,8 @@ if ($action === NULL) {
     }
 }
 
-// displays the drivers view
-if($action == 'driver_display'){
-
-	$date = filter_input(INPUT_POST,'day');
-	$day = date('l',strtotime($date));
-	
-	include('driver_display.php');
-	
-}
 // list busses for the day
-else if($action == 'list_busses') {
+if($action == 'list_busses') {
 	
 	$destination = filter_input(INPUT_POST, 'destination');
 	$date = filter_input(INPUT_POST,'day');
@@ -49,47 +40,24 @@ else if($action == 'list_busses') {
 	$trips = get_days_trips($day, $destination);
 	
 	include('list_busses.php');
-	
 }
 
-else if($action == 'get_passengers'){
+else if ($action == 'passenger_marked_off') {
+    $off_time = filter_input(INPUT_POST, 'off_time');
+    $finished = 'True';
+    $trip_id = filter_input(INPUT_POST, 'trip_id');
+    $uni_id = filter_input(INPUT_POST, 'uni_id');
+    $busNo = filter_input(INPUT_POST, 'busNo'); // Add this line to get busNo
+    $busTime = filter_input(INPUT_POST, "bus_time"); // Add this line to get busNo
+    $destination = filter_input(INPUT_POST, 'destination'); // Add this line to get destination
 
-	// takes todays date and output all bookings for the specific time and destination
-	
-	$destination = filter_input(INPUT_POST, 'destination');
-	$bus_time = filter_input(INPUT_POST, 'bus_time');
-	$date = filter_input(INPUT_POST,'day');
-	$day = date('l',strtotime($date));
-	#$schedule_id = filter_input(INPUT_POST,'schedule_id');
-	$schedule_id = '1';
+    mark_off_passenger($off_time, $finished, $trip_id, $uni_id);
 
-	$get_bus_schedule = get_bus_schedule($date, $day, $bus_time, $destination);
-
-	$passengers_on_trips = get_passengers_by_schedule_ID($schedule_id);
-	$passenger_count = count($passengers_on_trips);
-	
-	if ($passenger_count >= 1){
-		include('list_passengers.php');
-
-	}else{
-		include('no_passengers_found.php');
-
-	}
-
-}else if ($action == 'passenger_marked_off'){
-
-	$off_time = filter_input(INPUT_POST, 'off_time');
-	$finished = 'True' ;
-	$trip_id = filter_input(INPUT_POST,'trip_id');
-	$uni_id = filter_input(INPUT_POST, 'uni_id');
-
-	$passengers_off = mark_off_passenger($off_time, $finished, $trip_id, $uni_id);
-
-	include('check_off_passenger.php');
-
-
+    // Redirect back to the list_passengers page after updating the passenger
+    header('Location: listPassengers.php?busNo=' . urlencode($busNo) . '&destination=' . urlencode($destination) . '&off_time=' . urlencode($off_time) . 
+            '&finished=' . urlencode($finished) . '&trip_id=' . urlencode($trip_id) . '&uni_id=' . urlencode($uni_id) . '&bus_time=' . urlencode($busTime));
+    exit();
 }
-
 
 // code can be reused at each index page? for customers. Is there a better way?
 else if($action == 'log_out'){
@@ -97,7 +65,4 @@ else if($action == 'log_out'){
 	header('Location: ../driver_login/');
 	
 }
-
-
 ?>
-
