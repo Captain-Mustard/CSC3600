@@ -57,18 +57,37 @@ else if ($action == 'logged_in') {
         } else {
             // Display an error message for incorrect username or password
             $error = 'Username or Password Incorrect';
-            echo $error;
+            include('driver_login.php');
         }
     } else {
         // Display an error message for invalid username or password
         $error = "Please enter a valid username and password";
-        echo $error;
+        include('driver_login.php');
     }
 }
-
-// Log users out of the session
-else if ($action == 'logged_out') {
-    session_destroy(); // Destroy the entire session
-    include('driver_login.php');
-}
 ?>
+
+<!-- Add this JavaScript section at the bottom of the page -->
+<script>
+    function validateForm() {
+        document.getElementById('username_error').textContent = '';
+        document.getElementById('password_error').textContent = '';
+
+        let username = document.forms['driverForm']['driver_id'].value;
+        let password = document.forms['driverForm']['password'].value;
+
+        let isValid = true;
+
+        if (username.trim() === '') {
+            document.getElementById('username_error').textContent = 'Please enter a username';
+            isValid = false;
+        }
+
+        if (password.trim() === '') {
+            document.getElementById('password_error').textContent = 'Please enter a password';
+            isValid = false;
+        }
+
+        return isValid;
+    }
+</script>
