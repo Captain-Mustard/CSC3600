@@ -68,7 +68,7 @@
 
     
     <br>
-    <form action="../booking_platform/logout.php" method="post">
+    <form action="logout.php" method="post">
             <input type="hidden" name="action" value="log_out">
             <input class="submit-button" type="submit" value="Logout">
         </form>
