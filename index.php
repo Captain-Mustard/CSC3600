@@ -5,6 +5,7 @@
         <h2 class="section-title">Admin & Analytics</h2>
         <ul class="section-links">
             <li><a href="analytics">Admin & Analytics</a></li>
+            <li><a href="analytics_testing">Analytics Testing</a></li>
         </ul>
 
         <h2 class="section-title">Booking Platform</h2>
