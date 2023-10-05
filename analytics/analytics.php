@@ -1,81 +1,40 @@
 <?php include '../view/header.php'; ?>
 <main>
     <nav>
-  <h1>View Analytics by Route or Day:</h1>
-  <p>Select a Route or Day of Week:</p>
-</br>
+  <?php $last_month_count = get_last_month_passenger_count(); 
+		$next_month_count = get_next_month_passenger_count();
+		$last_week_count = get_last_week_passenger_count(); 
+		$next_week_count = get_next_week_passenger_count();
+		
+	?>
+	
+	<form>
+	
+	
+        <input type="hidden" name="action" value="get_routes">
+        <input type="submit" value="Analytics by Route">
+		<br><br>
+</form>
 
-    <!-- display -->
-
-    <form action="view_analytics.php" method="post">
-    <div class="container">
-    <div class="box-analytics-container">
-        <div class="box-analytics-child">
-        <label for="destination">Route Start:</label>
-        <select id="destination" name="start">
-            <option selected disabled>-- select --</option>
-            <option value="Toowoomba">Toowoomba</option>
-            <option value="Springfield">Springfield</option>
-            <option value="Springfield Central">Springfield Central</option>
-            <option value="Ipswich">Ipswich</option>
-            <option value="Plainland">Plainland</option>
-        </select>
-        <input type="hidden" name="submit_start"/>
-
-        <br />
-
-        <label for="destination">Route End:</label>
-        <select id="destination" name="end">
-            <option selected disabled>-- select --</option>
-            <option value="Toowoomba">Toowoomba</option>
-            <option value="Springfield">Springfield</option>
-            <option value="Springfield Central">Springfield Central</option>
-            <option value="Ipswich">Ipswich</option>
-            <option value="Plainland">Plainland</option>
-        </select>
-        <input type="hidden" name="submit_end"/>
-</div>
-<div class="box-analytics-child">
-    <br><br>
-        <label for="day">Day:</label>
-        <select id="day" name="day">
-            <option selected disabled>-- select --</option>
-            <option value="Monday">Monday</option>
-            <option value="Tuesday">Tuesday</option>
-            <option value="Wednesday">Wednesday</option>
-            <option value="Thursday">Thursday</option>
-            <option value="Friday">Friday</option>
-            </select> <br /><br /><br />
-            <input type="hidden" name="submit_day"/>
-</div>
-</div>
-</br>
-        <p>Select to View:</p>
-        <input type="hidden" name="action" value="next_7_days">
-        <input type="submit" value="Next 7 Days">
-
-        <input type="hidden" name="action" value="past_7_days">
-        <input type="submit" value="Past 7 Days">
-
-        <input type="hidden" name="action" value="past_30_days">
-        <input type="submit" value="Past 30 Days">
-
-        <input type="hidden" name="action" value="next_30_days">
-        <input type="submit" value="Next 30 Days">
+<form>
+	
+	
+        <input type="hidden" name="action" value="get_day">
+        <input type="submit" value="Analytics by Day">
+		<br><br>
+</form>
+	
+	<h2>total passengers last month:</h2>  <p><?= $last_month_count['totalTrips']; ?></p><br>
+	<h2>total passengers this month:</h2>  <p><?= $next_month_count['totalTrips']; ?></p><br>
+	<h2>total passengers last week:</h2>  <p><?= $last_week_count['totalTrips']; ?></p><br>
+	<h2>total passengers this week:</h2>  <p><?= $next_week_count['totalTrips']; ?></p><br>
+<br>
+    	  
+        <form> 	          <input type="hidden" name="action" value="log_out">
+            	           <input class="submit-button" type="submit" value="Logout">
+        </form>	       
 
 
-    </form>
-
-    
-    <br>
-    <form action="logout.php" method="post">
-            <input type="hidden" name="action" value="log_out">
-            <input class="submit-button" type="submit" value="Logout">
-        </form>
-    </nav>
-
-    
 </main>
-</div>
-</div>
+
 <?php include '../view/footer.php'; ?>
