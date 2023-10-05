@@ -185,6 +185,16 @@ a:hover {
   overflow: auto;
 }
 
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.button-container form {
+  margin-bottom: 10px; /* Add some spacing between the buttons */
+}
+
 /* Table headers */
 .container th {
   background-color: #003366;
