@@ -17,8 +17,8 @@ else
 }
 
 
-$DB_TBLName = "your_table_name"; //Change as needed
-$filename = "excelfilename";  //your_file_name
+$DB_TBLName = "bustimetable"; //Change as needed
+$filename = "analytics";  //your_file_name
 $file_ending = "xls";   //file_extention
 
 header("Content-Type: application/xls");    
